@@ -1,5 +1,5 @@
 import "server-only";
-import { ai, resolveModels } from "./openai";
+import { ai, isUnusableModel, resolveModels } from "./openai";
 import {
   feedbackSchema,
   FEEDBACK_JSON_SCHEMA,
@@ -183,10 +183,16 @@ async function withRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
   throw last;
 }
 
-/** A model that does not exist for this key — skip to the next one. */
+/**
+ * A model this key cannot use for chat — skip to the next one.
+ *
+ * Not only 404s: a provider's model list also contains models that exist
+ * but serve a different API (image, speech, WebSocket-only), and those
+ * answer 400. Treating that as fatal aborts the whole correction over a
+ * model the app itself chose.
+ */
 function isMissingModel(e: unknown): boolean {
-  const m = (e instanceof Error ? e.message : String(e)).toLowerCase();
-  return m.includes("404") || m.includes("not found") || m.includes("does not exist");
+  return isUnusableModel(e);
 }
 
 function isTransient(e: unknown): boolean {

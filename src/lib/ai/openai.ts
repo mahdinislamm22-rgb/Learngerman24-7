@@ -140,12 +140,57 @@ export function feedbackModels(): string[] {
    models this key can actually use and pick suitable ones.
    ------------------------------------------------------------------------- */
 
-/** Models that exist but cannot do chat completions. */
+/**
+ * Models that exist on the account but cannot answer a chat request.
+ *
+ * A provider's model list is not a list of chat models. Google's includes
+ * embeddings, image and video generators, text-to-speech, and specialised
+ * families that only work over a WebSocket — asking one of those for a
+ * chat completion returns a 400, not a 404, so it looks like a broken
+ * request rather than a wrong model.
+ *
+ * `streaming`, `robotics` and `bidi` are here because a real deployment
+ * picked `gemini-robotics-er-2-streaming-preview` and failed on every
+ * request. Treat this list as something that grows: the skip-and-continue
+ * behaviour in `isUnusableModel` is the real safety net.
+ */
 const NOT_CHAT =
-  /embed|embedding|imagen|image|veo|tts|audio|aqa|whisper|guard|vision|rerank|moderation|live|realtime|learnlm|attributed/i;
+  /embed|embedding|imagen|image|veo|tts|audio|aqa|whisper|guard|vision|rerank|moderation|live|realtime|learnlm|attributed|robotics|streaming|bidi|computer-use|dialog/i;
 
-/** Cheap, fast models suit this job: short input, structured output. */
-const PREFERRED = /flash|mini|small|lite|instant|turbo|8b|9b|haiku/i;
+/**
+ * Cheap, fast models suit this job: short input, structured output.
+ *
+ * Note the lookbehind on `mini`. Without it the word matches inside
+ * "ge-mini", so every Google model counted as fast and the ranking that
+ * is supposed to prefer Flash over Pro did nothing at all.
+ */
+const PREFERRED = /flash|(?<![a-z])mini|small|lite|instant|turbo|\b8b\b|\b9b\b|haiku/i;
+
+/** Experimental builds are withdrawn without notice and rate-limited harder. */
+const UNSTABLE = /preview|exp\b|experimental|-exp-|latest-\d|beta/i;
+
+/**
+ * Does this error mean "this particular model cannot do this", rather than
+ * something wrong with the request itself?
+ *
+ * Callers use it to move on to the next model instead of failing the whole
+ * request. A 404 is the obvious case, but providers also answer 400 for a
+ * model that exists and simply does not serve chat completions.
+ */
+export function isUnusableModel(e: unknown): boolean {
+  const m = (e instanceof Error ? e.message : String(e)).toLowerCase();
+  if (m.includes("404") || m.includes("not found") || m.includes("does not exist")) {
+    return true;
+  }
+  return (
+    m.includes("only supports") ||
+    m.includes("bidigeneratecontent") ||
+    m.includes("is not supported") ||
+    m.includes("not supported for") ||
+    m.includes("unsupported model") ||
+    m.includes("does not support")
+  );
+}
 
 let discovered: string[] | null = null;
 
@@ -163,12 +208,23 @@ export async function resolveModels(): Promise<string[]> {
       .filter((id) => !NOT_CHAT.test(id));
 
     if (ids.length) {
-      // Preferred models first, newest-looking first within each group.
-      const rank = (id: string) => (PREFERRED.test(id) ? 0 : 1);
+      // Fast AND stable first, then stable, then fast previews, then the
+      // rest. Sorting by name alone is what let a preview-only specialist
+      // model reach the front of the queue.
+      const rank = (id: string) => {
+        const fast = PREFERRED.test(id);
+        const stable = !UNSTABLE.test(id);
+        if (fast && stable) return 0;
+        if (stable) return 1;
+        if (fast) return 2;
+        return 3;
+      };
       const sorted = ids.sort(
         (a, b) => rank(a) - rank(b) || b.localeCompare(a, undefined, { numeric: true }),
       );
-      discovered = sorted.slice(0, 5);
+      // Keep more candidates than before: skipping a dud model costs one
+      // fast 400, and running out of candidates costs the whole request.
+      discovered = sorted.slice(0, 8);
       return discovered;
     }
   } catch {

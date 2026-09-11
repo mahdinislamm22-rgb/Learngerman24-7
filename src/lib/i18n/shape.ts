@@ -303,6 +303,77 @@ export type Dict = {
     confirmDelete: string;
   };
 
+  sb: {
+    title: string;
+    sub: string;
+    formatTitle: string;
+    formatText: string;
+    notStarted: string;
+    teil1: string;
+    teil1Hint: string;
+    teil2: string;
+    teil2Hint: string;
+    wordBank: string;
+    bankNote: string;
+    chooseWord: string;
+    usedTwice: string;
+    submit: string;
+    answered: string;
+    yourScore: string;
+    scoreNote: string;
+    gradeFailed: string;
+  };
+
+  lesen: {
+    title: string;
+    sub: string;
+    formatTitle: string;
+    formatText: string;
+    notStarted: string;
+    tapHint: string;
+    teil1: string;
+    teil2: string;
+    teil3: string;
+    headings: string;
+    headingsNote: string;
+    chooseAd: string;
+    noneFits: string;
+    submit: string;
+    answered: string;
+    yourScore: string;
+    scoreNote: string;
+    part: string;
+    gradeFailed: string;
+  };
+
+  hoeren: {
+    title: string;
+    sub: string;
+    formatTitle: string;
+    formatText: string;
+    voiceTitle: string;
+    voiceText: string;
+    notStarted: string;
+    onceHint: string;
+    part: string;
+    listen: string;
+    play: string;
+    playAgain: string;
+    stop: string;
+    speed: string;
+    limitReached: string;
+    noSpeech: string;
+    noGermanVoice: string;
+    showText: string;
+    hideText: string;
+    submit: string;
+    answered: string;
+    yourScore: string;
+    scoreNote: string;
+    practiceNote: string;
+    gradeFailed: string;
+  };
+
   a0: {
     title: string;
     sub: string;

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ai, explainAiError, resolveModels } from "@/lib/ai/openai";
+import { ai, explainAiError, isUnusableModel, resolveModels } from "@/lib/ai/openai";
 import { createClient } from "@/lib/supabase/server";
 
 type Topic = "grammar" | "vocab" | "writing" | "exam";
@@ -132,9 +132,12 @@ function isRetryable(error: unknown): boolean {
   );
 }
 
+/**
+ * A model that cannot serve this request — wrong family, or withdrawn.
+ * Shared with the writing corrector so both skip the same duds.
+ */
 function isMissingModel(error: unknown): boolean {
-  const message = error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase();
-  return message.includes("404") || message.includes("model not found") || message.includes("does not exist");
+  return isUnusableModel(error);
 }
 
 async function askTutorModel(options: {

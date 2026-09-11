@@ -51,10 +51,10 @@ export const NAV: NavItem[] = [
   { href: "/grammatik", key: "grammar", icon: BookOpen, mode: "lernen", primary: true, ready: true },
   { href: "/vokabeln", key: "vocab", icon: Library, mode: "lernen", ready: false, phase: 4 },
 
-  { href: "/lesen", key: "reading", icon: FileText, mode: "ueben", ready: false, phase: 5 },
-  { href: "/sprachbausteine", key: "langElements", icon: Blocks, mode: "ueben", ready: false, phase: 3 },
+  { href: "/lesen", key: "reading", icon: FileText, mode: "ueben", ready: true },
+  { href: "/sprachbausteine", key: "langElements", icon: Blocks, mode: "ueben", ready: true },
   { href: "/schreiben", key: "writing", icon: PenLine, mode: "ueben", primary: true, ready: true },
-  { href: "/hoeren", key: "listening", icon: Headphones, mode: "ueben", ready: false, phase: 6 },
+  { href: "/hoeren", key: "listening", icon: Headphones, mode: "ueben", ready: true },
 
   { href: "/pruefungen", key: "exams", icon: Target, mode: "pruefung", ready: false, phase: 5 },
 

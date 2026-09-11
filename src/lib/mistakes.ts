@@ -113,3 +113,81 @@ export async function topWeakTags(
 
   return (data ?? []).map((r) => r.tag as string).filter(Boolean);
 }
+
+/**
+ * Map an exercise tag onto one of the nine Mistake Bank categories.
+ *
+ * The writing corrector already files errors under these nine, so every
+ * other source has to use the same buckets — otherwise the Mistake Bank
+ * grows two parallel taxonomies and "you get this wrong repeatedly" stops
+ * being true.
+ */
+export function categoryForTag(tag: string): string {
+  if (tag.startsWith("artikel")) return "artikel";
+  if (tag.includes("praeposition")) return "praeposition";
+  if (tag.includes("wortstellung") || tag.includes("wortfolge")) return "wortstellung";
+  if (tag.includes("konnektor") || tag.includes("nebensatz")) return "konnektor";
+  if (tag.includes("wortschatz") || tag.includes("wendung")) return "wortschatz";
+  if (tag.includes("verb") || tag.includes("perfekt") || tag.includes("konjunktiv")) {
+    return "verbform";
+  }
+  if (tag.startsWith("kasus") || tag.includes("dativ") || tag.includes("akkusativ")) {
+    return "kasus";
+  }
+  return "kasus";
+}
+
+/**
+ * File one wrong answer into the Mistake Bank.
+ *
+ * Same unique key as a writing correction (user, category, tag, original),
+ * so getting the same thing wrong in an exercise and in a letter lands on
+ * the same row and the repeat counter means something.
+ */
+export async function recordTaggedMistake(
+  supabase: SupabaseClient,
+  userId: string,
+  m: {
+    tag: string;
+    original: string;
+    corrected: string;
+    explanation: unknown;
+    sourceKind: string;
+    sourceId: string;
+  },
+): Promise<void> {
+  const key = {
+    user_id: userId,
+    category: categoryForTag(m.tag),
+    tag: m.tag,
+    original: m.original,
+  };
+
+  const { data: existing } = await supabase
+    .from("mistakes")
+    .select("id, times_wrong")
+    .match(key)
+    .maybeSingle();
+
+  if (existing) {
+    await supabase
+      .from("mistakes")
+      .update({
+        times_wrong: Number(existing.times_wrong ?? 0) + 1,
+        times_right_since: 0,
+        status: "open",
+        last_seen_at: new Date().toISOString(),
+      })
+      .eq("id", existing.id);
+    return;
+  }
+
+  await supabase.from("mistakes").insert({
+    ...key,
+    corrected: m.corrected,
+    explanation: m.explanation as never,
+    source_kind: m.sourceKind,
+    source_id: m.sourceId,
+    times_wrong: 1,
+  });
+}
