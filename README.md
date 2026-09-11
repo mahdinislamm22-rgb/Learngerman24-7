@@ -231,6 +231,27 @@ something wrong once.
 
 ---
 
+## Deploying the app
+
+The hosting provider must have these environment variables configured before
+the first deploy. Copy the values from Supabase Project Settings → API:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+For the tutor and writing feedback, also add one server-only AI key:
+
+```
+OPENAI_API_KEY=your-key
+```
+
+Gemini, Groq, OpenRouter and OpenAI keys are supported. After adding or
+changing variables, redeploy; changing them in the hosting dashboard does not
+update an already-built deployment automatically. Never add a `service_role`
+key or an AI key to a `NEXT_PUBLIC_` variable.
+
 ## Setting up the AI key (needed from Phase 2 on)
 
 The app works with **four** services and picks the right one automatically

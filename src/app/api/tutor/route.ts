@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ai, explainAiError } from "@/lib/ai/openai";
+import { ai, explainAiError, resolveModels } from "@/lib/ai/openai";
 import { createClient } from "@/lib/supabase/server";
 
 type Topic = "grammar" | "vocab" | "writing" | "exam";
@@ -57,8 +57,7 @@ async function generateFollowUps(topic: Topic, answer: string): Promise<string[]
   const followPrompt = `Create exactly 3 short B1 study tasks based on this answer and topic. Return only a JSON object like {"followUps":["...","...","..."]}. Topic: ${topic}. Answer: ${answer}`;
 
   try {
-    const completion = await ai().chat.completions.create({
-      model: process.env.OPENAI_MODEL?.split(",")[0]?.trim() || "gemini-3.8-flash",
+    const completion = await askTutorModel({
       messages: [{ role: "user", content: followPrompt }],
       temperature: 0.7,
       max_tokens: 220,
@@ -76,6 +75,57 @@ async function generateFollowUps(topic: Topic, answer: string): Promise<string[]
   }
 
   return FALLBACK_PROMPTS[topic] ?? [];
+}
+
+function isRetryable(error: unknown): boolean {
+  const message = error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase();
+  return (
+    message.includes("429") ||
+    message.includes("500") ||
+    message.includes("502") ||
+    message.includes("503") ||
+    message.includes("504") ||
+    message.includes("rate limit") ||
+    message.includes("overloaded") ||
+    message.includes("high demand") ||
+    message.includes("timeout") ||
+    message.includes("timed out")
+  );
+}
+
+function isMissingModel(error: unknown): boolean {
+  const message = error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase();
+  return message.includes("404") || message.includes("model not found") || message.includes("does not exist");
+}
+
+async function askTutorModel(options: {
+  messages: Array<{ role: "system" | "user" | "assistant"; content: string }>;
+  temperature: number;
+  max_tokens: number;
+}) {
+  const models = await resolveModels();
+  let lastError: unknown;
+
+  for (const model of models) {
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        return await ai().chat.completions.create(
+          { model, ...options },
+          { timeout: 60_000, maxRetries: 0 },
+        );
+      } catch (error) {
+        lastError = error;
+        if (!isRetryable(error) || attempt === 1) break;
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
+    }
+
+    if (lastError && !isRetryable(lastError) && !isMissingModel(lastError)) {
+      throw lastError;
+    }
+  }
+
+  throw lastError ?? new Error("The tutor could not reach an available model.");
 }
 
 export async function GET() {
@@ -127,8 +177,8 @@ export async function POST(request: Request) {
 
     const systemPrompt =
       topic === "exam"
-        ? `You are a strict but encouraging telc B1 German exam coach. Always answer in German unless the learner asks in English, Italian or Bengali. Focus on the exact skills that cost points in the exam: word order, articles, case, prepositions, connectors, clear paragraphing, and realistic B1 phrasing. Give concise, exam-relevant explanations and short model examples. Never give vague advice; always explain the rule and show a correct example. Keep the response practical and direct.`
-        : `You are a friendly, patient German teacher helping a B1 learner prepare for the telc exam. Focus on the rules and patterns that actually matter in the exam: articles, cases, word order, prepositions, connectors, verbs, sentence building, and clear writing. Explain simply, never shame the learner, and keep answers practical. Use examples if helpful. If the learner asks in English, Italian or Bengali, answer in that language; otherwise prefer German. Keep the answer short but useful, and make it feel like a real exam coach.`;
+        ? `You are a strict but encouraging telc B1 German exam coach. Always answer in German unless the learner asks in English, Italian or Bengali. Focus on word order, articles, case, prepositions, connectors, clear paragraphing, and realistic B1 phrasing. Explain the rule, show one correct example, and give one short practice task. If correcting a sentence, quote the learner's version, then give the corrected version and a brief reason. Never invent a mistake. Keep the response practical and direct.`
+        : `You are a friendly, patient German teacher helping a B1 learner prepare for the telc exam. Explain one main idea at a time using plain language. For grammar, state the rule, show a correct German example, contrast it with the common mistake, and finish with one mini exercise. For vocabulary, include meaning, collocation, and a natural B1 example. If correcting a sentence, quote the learner's version, then give the corrected version and a brief reason. If the learner asks in English, Italian or Bengali, answer in that language; otherwise prefer German. Never invent a mistake, never shame the learner, and keep the answer useful rather than vague.`;
 
     const messages = [
       { role: "system" as const, content: systemPrompt },
@@ -136,8 +186,7 @@ export async function POST(request: Request) {
       { role: "user" as const, content: question },
     ];
 
-    const completion = await ai().chat.completions.create({
-      model: process.env.OPENAI_MODEL?.split(",")[0]?.trim() || "gemini-3.8-flash",
+    const completion = await askTutorModel({
       messages,
       temperature: 0.7,
       max_tokens: 350,
