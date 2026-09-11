@@ -34,6 +34,45 @@ const FALLBACK_PROMPTS: Record<Topic, string[]> = {
   ],
 };
 
+/**
+ * Shape the stored chat into something every provider will accept.
+ *
+ * Google's API — which is what a Gemini key routes to — requires the
+ * conversation to START with a user turn and to alternate from there. The
+ * chat opens with a greeting from the tutor, so the very first question
+ * would otherwise be sent as [system, assistant, user] and rejected
+ * outright. OpenAI tolerates that shape, which is exactly why this is easy
+ * to miss: the same code works on one provider and fails on another.
+ *
+ * So: drop any leading assistant turns, and collapse consecutive turns of
+ * the same role (which a failed request can leave behind).
+ */
+function conversationForModel(
+  history: TutorMessage[],
+): Array<{ role: "user" | "assistant"; content: string }> {
+  const firstUser = history.findIndex((m) => m.role === "user");
+  if (firstUser === -1) return [];
+
+  const out: Array<{ role: "user" | "assistant"; content: string }> = [];
+
+  for (const msg of history.slice(firstUser)) {
+    const previous = out[out.length - 1];
+    if (previous && previous.role === msg.role) {
+      // Two turns from the same side: merge rather than drop, so nothing
+      // the learner actually wrote is lost from the context.
+      previous.content = `${previous.content}\n\n${msg.content}`;
+      continue;
+    }
+    out.push({ role: msg.role, content: msg.content });
+  }
+
+  // The question is appended as a user turn by the caller, so the history
+  // must not already end on one.
+  if (out[out.length - 1]?.role === "user") out.pop();
+
+  return out;
+}
+
 function sanitizeMessages(history: unknown): TutorMessage[] {
   if (!Array.isArray(history)) return [];
 
@@ -182,7 +221,7 @@ export async function POST(request: Request) {
 
     const messages = [
       { role: "system" as const, content: systemPrompt },
-      ...history.map((msg) => ({ role: msg.role, content: msg.content })),
+      ...conversationForModel(history),
       { role: "user" as const, content: question },
     ];
 
@@ -217,6 +256,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ answer, followUps, messages: storedMessages });
   } catch (error) {
+    // Log the real error, not just the friendly version. Without this the
+    // cause only ever reaches the learner's browser, and a 500 in the
+    // Vercel log has no message attached to explain itself.
+    console.error("[tutor] request failed:", error);
     return NextResponse.json({ error: explainAiError(error) }, { status: 500 });
   }
 }

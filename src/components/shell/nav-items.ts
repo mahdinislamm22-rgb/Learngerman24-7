@@ -60,7 +60,7 @@ export const NAV: NavItem[] = [
 
   { href: "/fehler", key: "mistakes", icon: CircleAlert, mode: "meta", primary: true, ready: true },
   { href: "/wiederholung", key: "review", icon: RotateCcw, mode: "meta", ready: false, phase: 4 },
-  { href: "/tutor", key: "tutor", icon: Bot, mode: "meta", primary: true, ready: false, phase: 4 },
+  { href: "/tutor", key: "tutor", icon: Bot, mode: "meta", primary: true, ready: true },
   { href: "/fortschritt", key: "progress", icon: TrendingUp, mode: "meta", ready: false, phase: 6 },
   { href: "/plan", key: "plan", icon: CalendarDays, mode: "meta", ready: false, phase: 6 },
 ];

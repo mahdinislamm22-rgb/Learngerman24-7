@@ -1,5 +1,5 @@
-import { ComingSoon } from "@/components/shell/coming-soon";
+import { PhaseHub } from "@/components/learning/phase-hub";
 
 export default function Page() {
-  return <ComingSoon section="vocab" />;
+  return <PhaseHub section="vocab" />;
 }
