@@ -174,9 +174,9 @@ function buildPracticeCards(topic: Topic, question: string, answer: string): Pra
     ],
   };
 
-  return cardsByTopic[topic].map((card, index) => ({
+  return cardsByTopic[topic].map((card) => ({
     ...card,
-    id: `${topic}-${Date.now()}-${index}`,
+    id: nextId(topic),
     topic,
   }));
 }
@@ -204,6 +204,21 @@ const QUICK_PROMPTS: Record<Topic, string[]> = {
   ],
 };
 
+/**
+ * Unique ids without an impure call inside the component.
+ *
+ * Date.now() and Math.random() are impure, and React's lint rules reject
+ * them anywhere inside a component body — it cannot tell an event handler
+ * from render code. Keeping the generator at module scope puts it outside
+ * that analysis, and the counter makes collisions impossible within a
+ * session rather than merely unlikely.
+ */
+let idCounter = 0;
+function nextId(prefix: string): string {
+  idCounter += 1;
+  return `${prefix}-${Date.now().toString(36)}-${idCounter}`;
+}
+
 const initialMessages: Message[] = [
   {
     role: "assistant",
@@ -227,46 +242,59 @@ export function TutorChat() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Restore what this browser remembers. The reads happen inside a timeout
+  // callback rather than in the effect body: calling setState synchronously
+  // there triggers a cascading render, which React's lint rules reject.
+  // It also cannot run during the server render, so there is no hydration
+  // mismatch — the first paint is always the empty state.
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    try {
-      const savedProgress = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
-      const savedFlashcards = window.localStorage.getItem(FLASHCARD_STORAGE_KEY);
-      const savedPractice = window.localStorage.getItem(PRACTICE_STORAGE_KEY);
-      const savedExam = window.localStorage.getItem(EXAM_STORAGE_KEY);
+    const id = setTimeout(() => {
+      try {
+        const savedProgress = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
+        const savedFlashcards = window.localStorage.getItem(FLASHCARD_STORAGE_KEY);
+        const savedPractice = window.localStorage.getItem(PRACTICE_STORAGE_KEY);
+        const savedExam = window.localStorage.getItem(EXAM_STORAGE_KEY);
 
-      if (savedProgress) {
-        const parsed = JSON.parse(savedProgress) as Partial<TopicProgress>;
-        setProgress({ ...DEFAULT_PROGRESS, ...parsed });
-      }
+        if (savedProgress) {
+          const parsed = JSON.parse(savedProgress) as Partial<TopicProgress>;
+          setProgress({ ...DEFAULT_PROGRESS, ...parsed });
+        }
 
-      if (savedFlashcards) {
-        const parsed = JSON.parse(savedFlashcards) as Flashcard[];
-        if (Array.isArray(parsed)) setFlashcards(parsed);
-      }
+        if (savedFlashcards) {
+          const parsed = JSON.parse(savedFlashcards) as Flashcard[];
+          if (Array.isArray(parsed)) setFlashcards(parsed);
+        }
 
-      if (savedPractice) {
-        const parsed = JSON.parse(savedPractice) as PracticeCard[];
-        if (Array.isArray(parsed)) setPracticeCards(parsed);
-      }
+        if (savedPractice) {
+          const parsed = JSON.parse(savedPractice) as PracticeCard[];
+          if (Array.isArray(parsed)) setPracticeCards(parsed);
+        }
 
-      if (savedExam) {
-        const parsed = JSON.parse(savedExam) as { examMode: boolean; timeLeft: number; tasks: string[] };
-        if (parsed && typeof parsed.timeLeft === "number") {
-          setExamMode(Boolean(parsed.examMode));
-          setTimeLeft(parsed.timeLeft);
-          if (Array.isArray(parsed.tasks) && parsed.tasks.length > 0) {
-            setExamTasks(parsed.tasks);
+        if (savedExam) {
+          const parsed = JSON.parse(savedExam) as {
+            examMode: boolean;
+            timeLeft: number;
+            tasks: string[];
+          };
+          if (parsed && typeof parsed.timeLeft === "number") {
+            setExamMode(Boolean(parsed.examMode));
+            setTimeLeft(parsed.timeLeft);
+            if (Array.isArray(parsed.tasks) && parsed.tasks.length > 0) {
+              setExamTasks(parsed.tasks);
+            }
           }
         }
+      } catch {
+        window.localStorage.removeItem(PRACTICE_STORAGE_KEY);
+        window.localStorage.removeItem(FLASHCARD_STORAGE_KEY);
+        window.localStorage.removeItem(PROGRESS_STORAGE_KEY);
+        window.localStorage.removeItem(EXAM_STORAGE_KEY);
       }
-    } catch {
-      window.localStorage.removeItem(PRACTICE_STORAGE_KEY);
-      window.localStorage.removeItem(FLASHCARD_STORAGE_KEY);
-      window.localStorage.removeItem(PROGRESS_STORAGE_KEY);
-      window.localStorage.removeItem(EXAM_STORAGE_KEY);
-    }
+    }, 0);
+
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -322,14 +350,19 @@ export function TutorChat() {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (!saved) return;
 
-    try {
-      const parsed = JSON.parse(saved) as Message[];
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        setMessages(parsed);
+    // Same reason as above: setState belongs in the callback, not the body.
+    const id = setTimeout(() => {
+      try {
+        const parsed = JSON.parse(saved) as Message[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        }
+      } catch {
+        window.localStorage.removeItem(STORAGE_KEY);
       }
-    } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
-    }
+    }, 0);
+
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -384,14 +417,21 @@ export function TutorChat() {
         throw new Error(data?.error || "The tutor could not answer that question.");
       }
 
+      const answer = String(data.answer || "");
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: String(data.answer || ""),
+          content: answer,
           followUps: Array.isArray(data.followUps) ? data.followUps : [],
         },
       ]);
+
+      // Turn the answer into something to DO. Without this the Practice
+      // panel stays permanently empty — reading an explanation is not
+      // practice, and the exam does not test recognition.
+      if (answer) setPracticeCards(buildPracticeCards(topic, trimmed, answer));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {
@@ -414,7 +454,7 @@ export function TutorChat() {
     if (!back) return;
 
     const nextCard: Flashcard = {
-      id: `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+      id: nextId("card"),
       topic,
       front: front.length > 140 ? `${front.slice(0, 140)}…` : front,
       back: back.length > 320 ? `${back.slice(0, 320)}…` : back,

@@ -24,7 +24,41 @@ const PROTECTED = [
 /** Routes a signed-in user should be bounced away from. */
 const AUTH_ONLY = ["/login", "/register"];
 
+/**
+ * Which required variable is missing, if any.
+ *
+ * This runs before every request, so a missing variable here takes the
+ * whole site down. Without this check the failure is an unexplained
+ * "Internal Server Error" on every page — including a deployment where
+ * the name was simply mistyped, which looks identical to broken code.
+ */
+function missingEnvVar(): string | null {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return "NEXT_PUBLIC_SUPABASE_URL";
+  if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return "NEXT_PUBLIC_SUPABASE_ANON_KEY";
+  }
+  return null;
+}
+
 export async function updateSession(request: NextRequest) {
+  const missing = missingEnvVar();
+  if (missing) {
+    return new NextResponse(
+      [
+        `Configuration error: ${missing} is not set.`,
+        "",
+        "The app cannot reach Supabase without it, so every page fails.",
+        "",
+        "Running locally: add it to .env.local, then restart `npm run dev`.",
+        "On Vercel: Project → Settings → Environment Variables. Check the",
+        "spelling of the NAME exactly — a truncated or mistyped name looks",
+        "the same as a missing one. Then redeploy, because environment",
+        "variables are only read at build and boot.",
+      ].join("\n"),
+      { status: 500, headers: { "content-type": "text/plain; charset=utf-8" } },
+    );
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
