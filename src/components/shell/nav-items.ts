@@ -49,7 +49,7 @@ export const NAV: NavItem[] = [
   { href: "/dashboard", key: "dashboard", icon: LayoutDashboard, mode: "meta", primary: true, ready: true },
 
   { href: "/grammatik", key: "grammar", icon: BookOpen, mode: "lernen", primary: true, ready: true },
-  { href: "/vokabeln", key: "vocab", icon: Library, mode: "lernen", ready: false, phase: 4 },
+  { href: "/vokabeln", key: "vocab", icon: Library, mode: "lernen", ready: true },
 
   { href: "/lesen", key: "reading", icon: FileText, mode: "ueben", ready: true },
   { href: "/sprachbausteine", key: "langElements", icon: Blocks, mode: "ueben", ready: true },

@@ -114,6 +114,9 @@ export type Dict = {
     errNoCredentials: string;
     errShortPassword: string;
     errWrongCredentials: string;
+    errNotConfirmed: string;
+    errTooManyTries: string;
+    errAlreadyRegistered: string;
     errNoEmail: string;
     resetSent: string;
     linkExpired: string;
@@ -372,6 +375,25 @@ export type Dict = {
     scoreNote: string;
     practiceNote: string;
     gradeFailed: string;
+  };
+
+  vokabeln: {
+    title: string;
+    sub: string;
+    yourProgress: string;
+    learnedNote: string;
+    startTraining: string;
+    themes: string;
+    allThemes: string;
+    allWords: string;
+    allWordsNote: string;
+    trainerNote: string;
+    priority: string;
+    seenIn: string;
+    roundDone: string;
+    roundNote: string;
+    nextRound: string;
+    finish: string;
   };
 
   a0: {

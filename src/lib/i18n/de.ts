@@ -132,6 +132,9 @@ export const de: Dict = {
     errNoCredentials: "Bitte E-Mail und Passwort eingeben.",
     errShortPassword: "Das Passwort braucht mindestens 8 Zeichen.",
     errWrongCredentials: "E-Mail oder Passwort stimmt nicht.",
+    errNotConfirmed: "Diese Adresse ist noch nicht bestätigt. Schau in dein Postfach, auch in den Spam-Ordner.",
+    errTooManyTries: "Zu viele Versuche. Warte eine Minute und versuch es noch einmal — das ist eine Sicherheitssperre, kein falsches Passwort.",
+    errAlreadyRegistered: "Mit dieser E-Mail gibt es schon ein Konto. Melde dich an oder setze das Passwort zurück, wenn du es vergessen hast.",
     errNoEmail: "Bitte E-Mail eingeben.",
     resetSent:
       "Wenn es ein Konto mit dieser E-Mail gibt, ist eine E-Mail unterwegs.",
@@ -415,6 +418,25 @@ export const de: Dict = {
     scoreNote: "Bewertet wie im echten Bogen: 3,75 Punkte pro Item. Übungsmaterial, kein offizieller telc-Test.",
     practiceNote: "Jetzt kannst du jede Aufnahme beliebig oft anhören und im Text mitlesen.",
     gradeFailed: "Die Antworten konnten nicht geprüft werden. Bitte noch einmal versuchen.",
+  },
+
+  vokabeln: {
+    title: "Wortschatz",
+    sub: "Die Wörter, die in der telc-B1-Prüfung wirklich vorkommen — ausgewählt danach, wo sie im Bogen stehen, nicht danach, wie häufig sie im Deutschen sind.",
+    yourProgress: "Wörter, die du kannst",
+    learnedNote: "Ein Wort gilt als gekonnt nach drei richtigen Antworten hintereinander — oder wenn du es selbst markierst.",
+    startTraining: "Training starten",
+    themes: "Nach Thema",
+    allThemes: "Alle Themen",
+    allWords: "Alle Wörter dieser App",
+    allWordsNote: "Diese Liste sammelt auch die Wörter aus den Lesetexten und dem Artikeltrainer — ein Wort, das du einmal getroffen hast, geht nie verloren.",
+    trainerNote: "Die schwächsten und wichtigsten Wörter kommen zuerst. Die falschen Optionen stammen aus demselben Thema, damit du nicht durch Ausschluss raten kannst.",
+    priority: "Priorität",
+    seenIn: "Kommt auch vor in",
+    roundDone: "Runde beendet",
+    roundNote: "Falsch beantwortete Wörter kommen beim nächsten Mal früher zurück.",
+    nextRound: "Nächste Runde",
+    finish: "Fertig",
   },
 
   a0: {

@@ -37,10 +37,20 @@ export async function register(
     options: { data: { display_name: displayName || null } },
   });
 
-  if (error) return { error: error.message };
+  if (error) {
+    console.error("[auth] sign-up failed:", error.status, error.message);
+    const raw = error.message.toLowerCase();
+    // Supabase says "User already registered". Saying that plainly is the
+    // difference between signing in and creating a fourth near-identical
+    // account because the first one seemed not to exist.
+    if (raw.includes("already registered") || raw.includes("already exists")) {
+      return { error: m.errAlreadyRegistered };
+    }
+    return { error: error.message };
+  }
 
-  // Email confirmation is OFF for this personal build, so the user is
-  // signed in immediately. Turning it on later needs no code change here.
+  // Email confirmation is OFF for this build, so the user is signed in
+  // immediately. Turning it on later needs no code change here.
   revalidatePath("/", "layout");
   redirect("/dashboard");
 }
@@ -57,7 +67,19 @@ export async function login(
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) return { error: m.errWrongCredentials };
+  if (error) {
+    // Log the real reason. Showing one generic message for every failure
+    // is what made a login problem impossible to diagnose: a rate limit,
+    // an unconfirmed address and a wrong password all looked identical.
+    console.error("[auth] sign-in failed:", error.status, error.message);
+
+    const raw = error.message.toLowerCase();
+    if (raw.includes("not confirmed")) return { error: m.errNotConfirmed };
+    if (error.status === 429 || raw.includes("rate limit") || raw.includes("too many")) {
+      return { error: m.errTooManyTries };
+    }
+    return { error: m.errWrongCredentials };
+  }
 
   revalidatePath("/", "layout");
   redirect(next.startsWith("/") ? next : "/dashboard");
