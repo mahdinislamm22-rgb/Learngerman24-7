@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Deutsch B1 — design tokens
+   A single committed light identity: warm beige ground, iris accent.
+   Sage and clay are SEMANTIC ONLY (correct / mistake) so a green tick
+   never competes with a button for attention.
+   ========================================================================== */
+
+@theme {
+  /* -- surfaces -------------------------------------------------------- */
+  --color-parchment: #f4efe4; /* page ground */
+  --color-surface: #fcfaf5; /* cards, panels */
+  --color-surface-2: #ebe3d4; /* subtle fills, table headers */
+  --color-line: #e2d7c4; /* borders */
+  --color-line-strong: #d3c4ab;
+
+  /* -- text ------------------------------------------------------------ */
+  --color-ink: #2b2723;
+  --color-ink-soft: #6a625a;
+  --color-ink-faint: #948b80;
+
+  /* -- accent (the only one) ------------------------------------------- */
+  --color-iris: #6a57a8;
+  --color-iris-deep: #55458a;
+  --color-iris-soft: #ebe5f6;
+  --color-iris-line: #c9bee5;
+
+  /* -- semantic: correct / mistake / attention ------------------------- */
+  --color-sage: #557f6b;
+  --color-sage-soft: #e1ece6;
+  --color-clay: #ae6a50;
+  --color-clay-soft: #f5e5dd;
+  --color-amber: #9a7b3f;
+  --color-amber-soft: #f3ebda;
+
+  /* -- type ------------------------------------------------------------ */
+  --font-display: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-source-serif), Georgia, serif;
+  --font-ui: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, Menlo, monospace;
+  --font-bengali: var(--font-noto-bengali), var(--font-source-serif), serif;
+
+  /* -- radii ----------------------------------------------------------- */
+  --radius-card: 12px;
+  --radius-control: 9px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  /* room for the mobile bottom nav */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* German reading passages and lesson prose are set in the serif —
+   long German text is measurably easier to read this way, and it
+   separates "material to learn" from "app chrome". */
+.prose-de,
+.reading {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+}
+
+/* Bengali needs its own face or it falls back to a system font that
+   often renders conjuncts badly. */
+[lang="bn"],
+.bn {
+  font-family: var(--font-bengali);
+  line-height: 1.85;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  font-weight: 600;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Visible keyboard focus everywhere — accessibility requirement #28. */
+:focus-visible {
+  outline: 2px solid var(--color-iris);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-iris-soft);
+}
+
+/* Wide content (tables of endings, exam grids) scrolls in its own box
+   so the page body never scrolls sideways on a phone. */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
