@@ -392,6 +392,12 @@ export type Dict = {
     checkAnswer: string;
     correctAnswer: string;
     solution: string;
+    studyMode: string;
+    recallMode: string;
+    recallModeNote: string;
+    quizMode: string;
+    quizModeNote: string;
+    chooseAnswer: string;
     priority: string;
     seenIn: string;
     roundDone: string;

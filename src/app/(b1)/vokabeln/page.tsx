@@ -48,11 +48,18 @@ export default async function VokabelnPage() {
               {t.vokabeln.learnedNote}
             </p>
           </div>
-          <Link href="/vokabeln/ueben?theme=alle">
-            <span className="inline-flex items-center gap-1.5 rounded-[var(--radius-control)] bg-iris px-4 py-2.5 text-[14px] font-semibold text-white">
-              {t.vokabeln.startTraining} <ArrowRight size={15} aria-hidden />
-            </span>
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/vokabeln/ueben?theme=alle&mode=recall">
+              <span className="inline-flex items-center gap-1.5 rounded-[var(--radius-control)] bg-iris px-4 py-2.5 text-[14px] font-semibold text-white">
+                {t.vokabeln.recallMode} <ArrowRight size={15} aria-hidden />
+              </span>
+            </Link>
+            <Link href="/vokabeln/ueben?theme=alle&mode=quiz">
+              <span className="inline-flex items-center gap-1.5 rounded-[var(--radius-control)] border border-iris-line bg-surface px-4 py-2.5 text-[14px] font-semibold text-iris">
+                {t.vokabeln.quizMode}
+              </span>
+            </Link>
+          </div>
         </CardBody>
       </Card>
 

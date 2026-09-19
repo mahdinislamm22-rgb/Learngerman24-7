@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Check, RotateCcw, Flame } from "lucide-react";
 import { pick, type Lang } from "@/lib/types";
 import type { VocabWord } from "@/content/vokabeln";
@@ -16,9 +16,11 @@ import { Input } from "@/components/ui/input";
 export function VocabTrainer({
   words,
   explainLang,
+  mode = "recall",
 }: {
   words: VocabWord[];
   explainLang: Lang;
+  mode?: "recall" | "quiz";
 }) {
   const { t } = useI18n();
   const [index, setIndex] = useState(0);
@@ -32,12 +34,19 @@ export function VocabTrainer({
   const word = words[index];
   const bn = explainLang === "bn";
 
-  async function answer() {
-    if (chosen || busy || !word || !typed.trim()) return;
+  const options = useMemo(() => {
+    if (!word) return [];
+    const pool = words.filter((candidate) => candidate.de !== word.de);
+    const distractors = pool.filter((candidate) => candidate.meaning.en !== word.meaning.en).slice(0, 3);
+    return [word, ...distractors].sort((a, b) => hash(a.de + word.de) - hash(b.de + word.de));
+  }, [word, words]);
+
+  async function answer(given = typed) {
+    if (chosen || busy || !word || !given.trim()) return;
     setBusy(true);
-    setChosen(typed.trim());
+    setChosen(given.trim());
     try {
-      const res = await answerVocab(word.de, typed);
+      const res = await answerVocab(word.de, given);
       if (res.correct) {
         setCorrect((c) => c + 1);
         setStreak((s) => s + 1);
@@ -52,7 +61,7 @@ export function VocabTrainer({
   async function next() {
     if (index >= words.length - 1) {
       setDone(true);
-      await finishVocabRound(correctCount, words.length);
+      await finishVocabRound(correctCount + (isRight ? 1 : 0), words.length);
       return;
     }
     setChosen(null);
@@ -110,39 +119,58 @@ export function VocabTrainer({
 
       <Card>
         <CardBody className="flex flex-col gap-5 py-6">
-          <div className="text-center">
-            <p className="prose-de text-[28px] font-bold leading-tight">
-              {word.article ? <span className="text-iris">{word.article} </span> : null}
-              {word.de}
-            </p>
-            {word.plural ? (
-              <p className="prose-de mt-1 text-[13.5px] text-ink-faint">Plural: {word.plural}</p>
-            ) : null}
-          </div>
-
           <div className="flex flex-col gap-3">
             <p className={cn("text-center text-[15px] text-ink-soft", bn && "bn")}>
-              {t.vokabeln.typeAnswer} {pick(word.meaning, explainLang)}
+              {mode === "quiz" ? t.vokabeln.chooseAnswer : t.vokabeln.typeAnswer}
             </p>
-            <form
-              className="flex flex-col gap-2 sm:flex-row"
-              onSubmit={(event) => {
-                event.preventDefault();
-                void answer();
-              }}
-            >
-              <Input
-                autoFocus
-                value={typed}
-                onChange={(event) => setTyped(event.target.value)}
-                disabled={chosen !== null || busy}
-                placeholder={t.vokabeln.typeAnswer}
-                aria-label="German word"
-              />
-              <Button type="submit" disabled={!typed.trim() || chosen !== null || busy}>
-                {t.vokabeln.checkAnswer}
-              </Button>
-            </form>
+            <p className={cn("text-center text-[22px] font-semibold text-ink", bn && "bn")}>
+              {pick(word.meaning, explainLang)}
+            </p>
+            {mode === "quiz" ? (
+              <div className="grid gap-2 sm:grid-cols-2">
+                {options.map((option) => {
+                  const selected = chosen === option.de;
+                  const right = chosen !== null && option.de === word.de;
+                  return (
+                    <button
+                      key={option.de}
+                      type="button"
+                      disabled={chosen !== null || busy}
+                      onClick={() => void answer(option.de)}
+                      className={cn(
+                        "prose-de rounded-[var(--radius-control)] border px-3 py-3 text-left text-[15px] font-semibold transition-colors",
+                        chosen === null && "border-line bg-surface hover:border-iris-line hover:bg-iris-soft",
+                        right && "border-sage bg-sage-soft",
+                        selected && !right && "border-clay bg-clay-soft",
+                        chosen !== null && !selected && !right && "text-ink-faint",
+                      )}
+                    >
+                      {option.article ? `${option.article} ` : ""}{option.de}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <form
+                className="flex flex-col gap-2 sm:flex-row"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  void answer();
+                }}
+              >
+                <Input
+                  autoFocus
+                  value={typed}
+                  onChange={(event) => setTyped(event.target.value)}
+                  disabled={chosen !== null || busy}
+                  placeholder={t.vokabeln.typeAnswer}
+                  aria-label="German word"
+                />
+                <Button type="submit" disabled={!typed.trim() || chosen !== null || busy}>
+                  {t.vokabeln.checkAnswer}
+                </Button>
+              </form>
+            )}
           </div>
 
           {chosen !== null ? (
@@ -183,4 +211,13 @@ export function VocabTrainer({
       </Card>
     </div>
   );
+}
+
+function hash(value: string): number {
+  let result = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    result ^= value.charCodeAt(index);
+    result = Math.imul(result, 16777619);
+  }
+  return result >>> 0;
 }
