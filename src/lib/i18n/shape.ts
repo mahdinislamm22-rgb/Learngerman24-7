@@ -388,6 +388,10 @@ export type Dict = {
     allWords: string;
     allWordsNote: string;
     trainerNote: string;
+    typeAnswer: string;
+    checkAnswer: string;
+    correctAnswer: string;
+    solution: string;
     priority: string;
     seenIn: string;
     roundDone: string;

@@ -1,4 +1,5 @@
 import { CORE_WORDS } from "./core";
+import { B1_WORDS } from "./b1-wordlist";
 import { THEMES, type Theme, type VocabWord } from "./types";
 import { les01 } from "@/content/lesen/set-01";
 import { TRAINER_WORDS } from "@/content/grammatik/artikel-nomen";
@@ -6,6 +7,7 @@ import { TRAINER_WORDS } from "@/content/grammatik/artikel-nomen";
 export type { VocabWord, Theme } from "./types";
 export { THEMES } from "./types";
 export { CORE_WORDS } from "./core";
+export { B1_WORDS } from "./b1-wordlist";
 
 /**
  * Every word the app teaches, in one place.
@@ -78,7 +80,7 @@ export const ALL_WORDS: VocabWord[] = (() => {
 
   for (const word of CORE_WORDS) byWord.set(key(word.de), word);
 
-  for (const word of [...fromLesen(), ...fromTrainer()]) {
+  for (const word of [...B1_WORDS, ...fromLesen(), ...fromTrainer()]) {
     const k = key(word.de);
     if (!byWord.has(k)) byWord.set(k, word);
   }

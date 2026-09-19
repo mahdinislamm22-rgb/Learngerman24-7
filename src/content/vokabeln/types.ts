@@ -33,6 +33,8 @@ export type VocabWord = {
   /** Plural, where a B1 candidate is likely to need it. */
   plural?: string;
   meaning: Multi;
+  /** A short memory aid for words whose meaning or usage is easy to confuse. */
+  note?: Multi;
   /** One natural sentence, at B1 level, in a situation the exam uses. */
   example: string;
   theme: Theme;
@@ -108,6 +110,7 @@ export function w(
   theme: Theme,
   priority: 1 | 2 | 3 = 1,
   plural?: string,
+  note?: Multi,
 ): VocabWord {
-  return { de, article, meaning: { en, it, bn }, example, theme, priority, plural };
+  return { de, article, meaning: { en, it, bn }, example, theme, priority, plural, note };
 }

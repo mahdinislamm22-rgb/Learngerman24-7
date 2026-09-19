@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Check, X, RotateCcw, Flame } from "lucide-react";
+import { useState } from "react";
+import { Check, RotateCcw, Flame } from "lucide-react";
 import { pick, type Lang } from "@/lib/types";
 import type { VocabWord } from "@/content/vokabeln";
 import { answerVocab, finishVocabRound } from "@/app/(b1)/vokabeln/actions";
@@ -10,15 +10,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/components/i18n/provider";
 import { cn } from "@/lib/cn";
+import { Input } from "@/components/ui/input";
 
-/**
- * Vocabulary drill: German word in, meaning out.
- *
- * The wrong options are drawn from the SAME theme wherever possible. Four
- * options from four unrelated themes can be answered by elimination
- * without knowing the word at all, which feels like progress and teaches
- * nothing.
- */
+/** Vocabulary drill: meaning in, German word typed into the gap. */
 export function VocabTrainer({
   words,
   explainLang,
@@ -29,6 +23,7 @@ export function VocabTrainer({
   const { t } = useI18n();
   const [index, setIndex] = useState(0);
   const [chosen, setChosen] = useState<string | null>(null);
+  const [typed, setTyped] = useState("");
   const [correctCount, setCorrect] = useState(0);
   const [streak, setStreak] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -37,34 +32,12 @@ export function VocabTrainer({
   const word = words[index];
   const bn = explainLang === "bn";
 
-  // Options are derived from the word list, so server and client build the
-  // same set — no hydration mismatch, and no reshuffle on every render.
-  const options = useMemo(() => {
-    if (!word) return [];
-    const sameTheme = words.filter((x) => x.de !== word.de && x.theme === word.theme);
-    const others = words.filter((x) => x.de !== word.de && x.theme !== word.theme);
-    const pool = [...sameTheme, ...others];
-
-    const distractors: VocabWord[] = [];
-    for (const candidate of pool) {
-      if (distractors.length >= 3) break;
-      if (distractors.some((d) => d.meaning.en === candidate.meaning.en)) continue;
-      if (candidate.meaning.en === word.meaning.en) continue;
-      distractors.push(candidate);
-    }
-
-    return [word, ...distractors].sort((a, b) =>
-      // Deterministic order derived from the words themselves.
-      hash(a.de + word.de) - hash(b.de + word.de),
-    );
-  }, [word, words]);
-
-  async function answer(option: VocabWord) {
-    if (chosen || busy || !word) return;
+  async function answer() {
+    if (chosen || busy || !word || !typed.trim()) return;
     setBusy(true);
-    setChosen(option.de);
+    setChosen(typed.trim());
     try {
-      const res = await answerVocab(word.de, option.meaning.en);
+      const res = await answerVocab(word.de, typed);
       if (res.correct) {
         setCorrect((c) => c + 1);
         setStreak((s) => s + 1);
@@ -83,6 +56,7 @@ export function VocabTrainer({
       return;
     }
     setChosen(null);
+    setTyped("");
     setIndex((i) => i + 1);
   }
 
@@ -146,37 +120,30 @@ export function VocabTrainer({
             ) : null}
           </div>
 
-          <ul className="flex flex-col gap-2">
-            {options.map((opt) => {
-              const picked = chosen === opt.de;
-              const isAnswer = chosen !== null && opt.de === word.de;
-              return (
-                <li key={opt.de}>
-                  <button
-                    type="button"
-                    disabled={chosen !== null || busy}
-                    onClick={() => answer(opt)}
-                    className={cn(
-                      "flex w-full items-center gap-2.5 rounded-[var(--radius-control)] border px-3.5 py-3 text-left text-[15px] transition-colors",
-                      chosen === null && "border-line bg-surface hover:border-iris-line hover:bg-iris-soft",
-                      isAnswer && "border-sage bg-sage-soft",
-                      picked && !isAnswer && "border-clay bg-clay-soft",
-                      chosen !== null && !picked && !isAnswer && "border-line bg-surface text-ink-faint",
-                    )}
-                  >
-                    {chosen !== null && isAnswer ? (
-                      <Check size={16} className="shrink-0 text-sage" aria-hidden />
-                    ) : picked ? (
-                      <X size={16} className="shrink-0 text-clay" aria-hidden />
-                    ) : (
-                      <span aria-hidden className="h-4 w-4 shrink-0 rounded-full border border-line-strong" />
-                    )}
-                    <span className={cn(bn && "bn")}>{pick(opt.meaning, explainLang)}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="flex flex-col gap-3">
+            <p className={cn("text-center text-[15px] text-ink-soft", bn && "bn")}>
+              {t.vokabeln.typeAnswer} {pick(word.meaning, explainLang)}
+            </p>
+            <form
+              className="flex flex-col gap-2 sm:flex-row"
+              onSubmit={(event) => {
+                event.preventDefault();
+                void answer();
+              }}
+            >
+              <Input
+                autoFocus
+                value={typed}
+                onChange={(event) => setTyped(event.target.value)}
+                disabled={chosen !== null || busy}
+                placeholder={t.vokabeln.typeAnswer}
+                aria-label="German word"
+              />
+              <Button type="submit" disabled={!typed.trim() || chosen !== null || busy}>
+                {t.vokabeln.checkAnswer}
+              </Button>
+            </form>
+          </div>
 
           {chosen !== null ? (
             <div
@@ -187,6 +154,15 @@ export function VocabTrainer({
             >
               {word.example ? (
                 <p className="prose-de text-[15px] leading-relaxed">{word.example}</p>
+              ) : null}
+              <p className="flex items-center gap-2 text-[14px] font-semibold">
+                {isRight ? <Check size={16} className="text-sage" aria-hidden /> : null}
+                {isRight ? t.vokabeln.correctAnswer : `${t.vokabeln.solution}: ${word.de}`}
+              </p>
+              {word.note ? (
+                <p className={cn("text-[13.5px] leading-relaxed text-ink-soft", bn && "bn")}>
+                  {pick(word.note, explainLang)}
+                </p>
               ) : null}
               {word.seenIn ? (
                 <p className="text-[12.5px] text-ink-faint">
@@ -207,13 +183,4 @@ export function VocabTrainer({
       </Card>
     </div>
   );
-}
-
-function hash(s: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
 }

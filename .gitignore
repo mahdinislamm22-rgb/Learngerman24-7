@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local tooling / assistant scratch — not part of the project
+.claude/
+.cursor/
+.aider*
+AGENTS.md
+CLAUDE.md
+HANDOFF-*.md

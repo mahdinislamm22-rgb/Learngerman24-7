@@ -48,13 +48,13 @@ export async function pickVocab(
  */
 export async function answerVocab(
   wordDe: string,
-  givenMeaningEn: string,
+  givenWord: string,
 ): Promise<VocabAnswer> {
   const word = findWord(wordDe);
   if (!word) return { correct: false, meaning: "" };
 
   const correct =
-    givenMeaningEn.trim().toLowerCase() === word.meaning.en.trim().toLowerCase();
+    givenWord.trim().toLocaleLowerCase("de-DE") === word.de.trim().toLocaleLowerCase("de-DE");
 
   const supabase = await createClient();
   const {
