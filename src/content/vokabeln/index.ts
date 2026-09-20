@@ -30,7 +30,7 @@ function fromLesen(): VocabWord[] {
     de: (g.base ?? g.word).replace(/^(der|die|das)\s+/, ""),
     article: g.article,
     meaning: g.meaning,
-    example: "",
+    example: importedExample(g.base ?? g.word, guessTheme(g.base ?? g.word)),
     theme: guessTheme(g.base ?? g.word),
     priority: 2 as const,
     seenIn: `Lesen ${les01.code}`,
@@ -43,11 +43,35 @@ function fromTrainer(): VocabWord[] {
     de: n.de,
     article: n.article,
     meaning: n.meaning,
-    example: "",
+    example: importedExample(n.de, guessTheme(n.de)),
     theme: guessTheme(n.de),
     priority: (n.level === 1 ? 1 : n.level === 2 ? 2 : 3) as 1 | 2 | 3,
     seenIn: "Artikeltrainer",
   }));
+}
+
+/**
+ * Imported vocabulary has meaning and context, but not always a sentence.
+ * Keep the fallback grammatical for every part of speech while still making
+ * it useful as a model for formal B1 vocabulary study.
+ */
+function importedExample(word: string, theme: Theme): string {
+  const contexts: Record<Theme, string> = {
+    arbeit: "Arbeit und Beruf",
+    wohnen: "Wohnen",
+    gesundheit: "Gesundheit",
+    behoerden: "Ämter und Formulare",
+    ausbildung: "Ausbildung und Schule",
+    reisen: "Reisen und Verkehr",
+    einkaufen: "Einkaufen und Geld",
+    freizeit: "Freizeit und Kontakte",
+    umwelt: "Umwelt und Wetter",
+    gefuehle: "Meinungen und Gefühlen",
+    verben: "den Alltag",
+    konnektoren: "schriftliche Kommunikation",
+  };
+
+  return `Der Ausdruck „${word}“ wird häufig im Zusammenhang mit ${contexts[theme]} verwendet.`;
 }
 
 /**
