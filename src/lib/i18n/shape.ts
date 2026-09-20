@@ -34,6 +34,7 @@ export type Dict = {
     groupPractice: string;
     groupExam: string;
     groupPersonal: string;
+    allSections: string;
     switchToA0: string;
     switchToB1: string;
   };

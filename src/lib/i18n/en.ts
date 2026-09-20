@@ -26,6 +26,7 @@ export const en: Dict = {
     groupPractice: "Practise",
     groupExam: "Exam",
     groupPersonal: "Personal",
+    allSections: "All sections",
     switchToA0: "Switch to beginner course",
     switchToB1: "Switch to B1 course",
   },

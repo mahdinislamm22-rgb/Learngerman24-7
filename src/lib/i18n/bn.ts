@@ -26,6 +26,7 @@ export const bn: Dict = {
     groupPractice: "অনুশীলন",
     groupExam: "পরীক্ষা",
     groupPersonal: "ব্যক্তিগত",
+    allSections: "সব বিভাগ",
     switchToA0: "শুরুর কোর্সে যান",
     switchToB1: "B1 কোর্সে যান",
   },
