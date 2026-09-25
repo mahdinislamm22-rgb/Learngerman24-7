@@ -1,6 +1,10 @@
 import { hoer01 } from "./set-01";
 import { hoer02 } from "./set-02";
 import { hoer03 } from "./set-03";
+import { hoer04 } from "./set-04";
+import { hoer05 } from "./set-05";
+import { hoer06 } from "./set-06";
+import { hoer07 } from "./set-07";
 import { hoerItems, type HoerSet } from "./types";
 
 export type { HoerSet, HoerTeil, HoerTrack, HoerItem } from "./types";
@@ -11,7 +15,7 @@ export {
   HOER_POINTS_PER_ITEM,
 } from "./types";
 
-export const HOER_SETS: HoerSet[] = [hoer01, hoer02, hoer03];
+export const HOER_SETS: HoerSet[] = [hoer01, hoer02, hoer03, hoer04, hoer05, hoer06, hoer07];
 
 export function getHoerSet(code: string): HoerSet | undefined {
   return HOER_SETS.find((s) => s.code === code);
@@ -53,6 +57,14 @@ export function validateHoerSet(set: HoerSet): string[] {
   }
   const dupes = nrs.filter((n, i) => nrs.indexOf(n) !== i);
   if (dupes.length) p(`duplicate item numbers: ${dupes.join(", ")}.`);
+
+  // With only two possible answers, a lopsided paper is a free 70 %: tick
+  // everything "falsch" and pass. The same audit that caught the
+  // Sprachbausteine pattern added this one.
+  const richtig = hoerItems(set).filter((i) => i.answer).length;
+  if (richtig < 7 || richtig > 13) {
+    p(`${richtig} of 20 items are richtig — too lopsided to practise against.`);
+  }
 
   return problems;
 }

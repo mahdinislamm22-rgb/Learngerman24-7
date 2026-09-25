@@ -47,8 +47,8 @@ Mahdin`,
     items: [
       {
         nr: 1,
-        options: ["bin", "habe", "war"],
-        answerIndex: 0,
+        options: ["habe", "war", "bin"],
+        answerIndex: 2,
         tag: "perfekt-hilfsverb",
         why: {
           de: "»ziehen« im Sinne von umziehen beschreibt eine Ortsveränderung, und solche Verben bilden das Perfekt mit sein: ich bin gezogen.",
@@ -71,8 +71,8 @@ Mahdin`,
       },
       {
         nr: 3,
-        options: ["weil", "denn", "aber"],
-        answerIndex: 0,
+        options: ["denn", "weil", "aber"],
+        answerIndex: 1,
         tag: "nebensatz-weil",
         why: {
           de: "Hier ist es umgekehrt: »ich niemanden kannte« hat das Verb am Ende, also ein Nebensatz — das verlangt weil. Mit denn müsste es heißen: denn ich kannte niemanden.",
@@ -95,8 +95,8 @@ Mahdin`,
       },
       {
         nr: 5,
-        options: ["mir", "mich", "meiner"],
-        answerIndex: 0,
+        options: ["mich", "meiner", "mir"],
+        answerIndex: 2,
         tag: "dativverb",
         why: {
           de: "»helfen« verlangt immer den Dativ: Sie hilft mir. Im Englischen und Italienischen ist es ein direktes Objekt — daher der häufige Fehler »hilft mich«.",
@@ -107,8 +107,8 @@ Mahdin`,
       },
       {
         nr: 6,
-        options: ["mit", "an", "zu"],
-        answerIndex: 0,
+        options: ["an", "mit", "zu"],
+        answerIndex: 1,
         tag: "verben-mit-praeposition",
         why: {
           de: "»anfangen mit« + Dativ: Ich fange mit einem Praktikum an. Das »an« steht schon am Satzende, weil anfangen trennbar ist.",
@@ -131,8 +131,8 @@ Mahdin`,
       },
       {
         nr: 8,
-        options: ["Möchtest", "Möchte", "Möchtet"],
-        answerIndex: 0,
+        options: ["Möchte", "Möchtet", "Möchtest"],
+        answerIndex: 2,
         tag: "verbform",
         why: {
           de: "Das Subjekt ist »du«, also endet das Verb auf -st: Möchtest du …? »Möchtet« gehört zu ihr, »möchte« zu ich oder er/sie/es.",
@@ -143,8 +143,8 @@ Mahdin`,
       },
       {
         nr: 9,
-        options: ["bei", "mit", "zu"],
-        answerIndex: 0,
+        options: ["mit", "bei", "zu"],
+        answerIndex: 1,
         tag: "praeposition-dativ",
         why: {
           de: "»bei mir schlafen« heißt: in meiner Wohnung übernachten. bei + Dativ benutzt man für Personen und ihre Wohnung.",
@@ -186,27 +186,27 @@ Mit freundlichen Grüßen
 Mahdin Islam`,
 
     bank: [
-      { key: "a", word: "gelesen" },
+      { key: "a", word: "aus" },
       { key: "b", word: "bewerben" },
-      { key: "c", word: "aus" },
-      { key: "d", word: "abgeschlossen" },
-      { key: "e", word: "Kellner" },
-      { key: "f", word: "interessiert" },
-      { key: "g", word: "Team" },
+      { key: "c", word: "freuen" },
+      { key: "d", word: "vor" },
+      { key: "e", word: "interessiert" },
+      { key: "f", word: "Zimmer" },
+      { key: "g", word: "gefällt" },
       { key: "h", word: "Anhang" },
-      { key: "i", word: "vor" },
-      { key: "j", word: "freuen" },
-      { key: "k", word: "gehört" },
-      { key: "l", word: "Beruf" },
-      { key: "m", word: "gefällt" },
-      { key: "n", word: "Zimmer" },
-      { key: "o", word: "nach" },
+      { key: "i", word: "Kellner" },
+      { key: "j", word: "abgeschlossen" },
+      { key: "k", word: "Beruf" },
+      { key: "l", word: "gehört" },
+      { key: "m", word: "gelesen" },
+      { key: "n", word: "nach" },
+      { key: "o", word: "Team" },
     ],
 
     items: [
       {
         nr: 11,
-        answerKey: "a",
+        answerKey: "m",
         tag: "wortschatz-verb",
         why: {
           de: "Eine Anzeige im Internet liest man. »gehört« steht auch im Kasten, passt aber nur zu Radio oder Gespräch.",
@@ -228,7 +228,7 @@ Mahdin Islam`,
       },
       {
         nr: 13,
-        answerKey: "c",
+        answerKey: "a",
         tag: "praeposition-herkunft",
         why: {
           de: "Herkunft wird immer mit »aus« ausgedrückt: Ich komme aus Bangladesch. »nach« zeigt eine Richtung, nicht die Herkunft.",
@@ -239,7 +239,7 @@ Mahdin Islam`,
       },
       {
         nr: 14,
-        answerKey: "d",
+        answerKey: "j",
         tag: "wortschatz-verb",
         why: {
           de: "»die Schule abschließen« heißt sie beenden und einen Abschluss bekommen. Das ist genau das Wort, das in einen Lebenslauf gehört.",
@@ -250,7 +250,7 @@ Mahdin Islam`,
       },
       {
         nr: 15,
-        answerKey: "e",
+        answerKey: "i",
         tag: "wortschatz-nomen",
         why: {
           de: "»als Kellner arbeiten« — nach »als« steht der Beruf ohne Artikel. »Beruf« selbst steht im Kasten, ergibt hier aber keinen Sinn.",
@@ -261,7 +261,7 @@ Mahdin Islam`,
       },
       {
         nr: 16,
-        answerKey: "f",
+        answerKey: "e",
         tag: "kasus-akkusativ",
         why: {
           de: "»Etwas interessiert mich« — mit Akkusativ. »gefällt« steht auch im Kasten, würde aber »mir« verlangen: Die Arbeit gefällt mir. Die Grammatik entscheidet, nicht die Bedeutung.",
@@ -272,7 +272,7 @@ Mahdin Islam`,
       },
       {
         nr: 17,
-        answerKey: "g",
+        answerKey: "o",
         tag: "feste-wendung",
         why: {
           de: "»im Team arbeiten« ist eine feste Wendung und ein Standardsatz in jeder Bewerbung.",
@@ -294,7 +294,7 @@ Mahdin Islam`,
       },
       {
         nr: 19,
-        answerKey: "i",
+        answerKey: "d",
         tag: "trennbares-verb",
         why: {
           de: "»sich vorstellen« ist trennbar, und bei einem trennbaren Verb steht die Vorsilbe im Hauptsatz am Ende: Gern stelle ich mich … vor.",
@@ -305,7 +305,7 @@ Mahdin Islam`,
       },
       {
         nr: 20,
-        answerKey: "j",
+        answerKey: "c",
         tag: "verben-mit-praeposition",
         why: {
           de: "»sich über etwas freuen« — der Infinitiv fehlt am Satzende. Dieser Schlusssatz passt in jede Bewerbung.",

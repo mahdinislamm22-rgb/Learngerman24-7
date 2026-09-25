@@ -1,6 +1,10 @@
 import { sb01 } from "./set-01";
 import { sb02 } from "./set-02";
 import { sb03 } from "./set-03";
+import { sb04 } from "./set-04";
+import { sb05 } from "./set-05";
+import { sb06 } from "./set-06";
+import { sb07 } from "./set-07";
 import { splitGaps, type SbSet } from "./types";
 
 export type { SbSet, SbTeil1Item, SbTeil2Item, SbBankEntry } from "./types";
@@ -11,7 +15,7 @@ export {
   SB_TOTAL_POINTS,
 } from "./types";
 
-export const SB_SETS: SbSet[] = [sb01, sb02, sb03];
+export const SB_SETS: SbSet[] = [sb01, sb02, sb03, sb04, sb05, sb06, sb07];
 
 export function getSbSet(code: string): SbSet | undefined {
   return SB_SETS.find((s) => s.code === code);
@@ -95,6 +99,29 @@ export function validateSet(set: SbSet): string[] {
       problems.push(`${set.code}: bank word "${item.answerKey}" is the answer twice.`);
     }
     used.add(item.answerKey);
+  }
+
+  // --- the answers must not form a pattern ------------------------------
+  // An audit caught this section with option (a) correct in 49 of 50 items
+  // and every Teil 2 key running a, b, c, d … in order — a full 30 points
+  // available without reading a word of German. Every other check passed,
+  // because nothing was factually wrong; only the distribution was. So the
+  // distribution is now part of what "valid" means.
+  for (const opt of [0, 1, 2] as const) {
+    const n = set.teil1.items.filter((i) => i.answerIndex === opt).length;
+    if (n > 5) {
+      problems.push(
+        `${set.code} Teil 1: option ${"abc"[opt]} is the answer ${n} times out of 10 — guessable.`,
+      );
+    }
+  }
+
+  const t2Keys = set.teil2.items.map((i) => i.answerKey);
+  const inOrder = t2Keys.every((k, i) => k === "abcdefghijklmno"[i]);
+  if (inOrder) {
+    problems.push(
+      `${set.code} Teil 2: the answers run ${t2Keys.join("")} — reorder the bank.`,
+    );
   }
 
   return problems;

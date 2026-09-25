@@ -1,6 +1,10 @@
 import { les01 } from "./set-01";
 import { les02 } from "./set-02";
 import { les03 } from "./set-03";
+import { les04 } from "./set-04";
+import { les05 } from "./set-05";
+import { les06 } from "./set-06";
+import { les07 } from "./set-07";
 import { tokenize, type LesenSet } from "./types";
 
 export type {
@@ -20,7 +24,7 @@ export {
   LESEN_POINTS_PER_ITEM,
 } from "./types";
 
-export const LESEN_SETS: LesenSet[] = [les01, les02, les03];
+export const LESEN_SETS: LesenSet[] = [les01, les02, les03, les04, les05, les06, les07];
 
 export function getLesenSet(code: string): LesenSet | undefined {
   return LESEN_SETS.find((s) => s.code === code);
@@ -96,6 +100,36 @@ export function validateLesenSet(set: LesenSet): string[] {
     if (s.answerKey !== "x") {
       if (usedAds.has(s.answerKey)) p(`advert "${s.answerKey}" is the answer twice.`);
       usedAds.add(s.answerKey);
+    }
+  }
+
+  // An answer key that runs a, b, c, d, e — or a Teil 2 where one option
+  // is right four times out of five — can be solved without reading any
+  // German at all. An audit found exactly that in the first two sets, and
+  // nothing in the type system or the other checks could see it, so the
+  // pattern itself gets checked from here on.
+  const t1Keys = set.teil1.texts.map((t) => t.answerKey);
+  const alphabet = "abcdefghij";
+  if (t1Keys.join("") === alphabet.slice(0, t1Keys.length)) {
+    p(`Teil 1 answers run ${t1Keys.join("")} — solvable without reading. Reorder the headings.`);
+  }
+
+  // Teil 3 has the same failure mode: ten situations answered a, b, c, d …
+  // in order are ten free points. The "x" answers are skipped, since they
+  // are not part of the letter sequence.
+  const t3Keys = set.teil3.situations.map((s) => s.answerKey).filter((k) => k !== "x");
+  const runsInOrder =
+    t3Keys.length > 3 &&
+    t3Keys.every((k, i) => i === 0 || alphabet.indexOf(k) > alphabet.indexOf(t3Keys[i - 1]));
+  if (runsInOrder) {
+    p(`Teil 3 answers climb ${t3Keys.join("")} — reorder the adverts.`);
+  }
+
+  const t2 = set.teil2.questions.map((q) => q.answerIndex);
+  for (const opt of [0, 1, 2] as const) {
+    const n = t2.filter((a) => a === opt).length;
+    if (n > 3) {
+      p(`Teil 2: option ${"abc"[opt]} is the answer ${n} times out of ${t2.length} — guessable.`);
     }
   }
 

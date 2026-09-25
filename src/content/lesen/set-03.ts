@@ -173,13 +173,13 @@ Und noch etwas: Wenn ein Termin nicht passt, sollte man ihn absagen, am besten e
         question: "Was passiert, wenn man die Versichertenkarte vergisst?",
         options: [
           "Man wird nicht behandelt.",
-          "Man kann die Karte noch nachreichen.",
           "Man muss sofort bar bezahlen.",
+          "Man kann die Karte noch nachreichen.",
         ],
-        answerIndex: 1,
+        answerIndex: 2,
         why: {
-          de: "»wird der Besuch zwar nicht abgelehnt, aber die Praxis darf eine Rechnung schreiben, wenn die Karte nicht innerhalb von zehn Tagen nachgereicht wird«. Man darf sie also nachreichen — a) und c) beschreiben nur, was passiert, wenn man es nicht tut.",
-          en: "'the visit is not refused, but the practice may bill you if the card is not handed in within ten days'. So you may hand it in later — a) and c) only describe what happens if you don't.",
+          de: "»wird der Besuch zwar nicht abgelehnt, aber die Praxis darf eine Rechnung schreiben, wenn die Karte nicht innerhalb von zehn Tagen nachgereicht wird«. Man darf sie also nachreichen — a) und b) beschreiben nur, was passiert, wenn man es nicht tut.",
+          en: "'the visit is not refused, but the practice may bill you if the card is not handed in within ten days'. So you may hand it in later — a) and b) only describe what happens if you don't.",
           it: "»la visita non viene rifiutata, ma lo studio può emettere fattura se la tessera non arriva entro dieci giorni«. Quindi si può consegnarla dopo.",
           bn: "»সাক্ষাৎ প্রত্যাখ্যান করা হয় না, তবে দশ দিনের মধ্যে কার্ড না দিলে চেম্বার বিল পাঠাতে পারে«। অর্থাৎ পরে দেওয়া যায়।",
         },

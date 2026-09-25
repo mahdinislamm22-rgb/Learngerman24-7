@@ -35,34 +35,34 @@ export const les01: LesenSet = {
     },
 
     headings: [
-      { key: "a", text: "Mehr Platz für Radfahrer" },
-      { key: "b", text: "Arbeiten, wo man will" },
-      { key: "c", text: "Deutsch lernen neben dem Beruf" },
-      { key: "d", text: "Hilfe von nebenan" },
-      { key: "e", text: "Ohne Handy lernt es sich besser" },
-      { key: "f", text: "Teurer Urlaub in den Bergen" },
-      { key: "g", text: "Neue Öffnungszeiten im Rathaus" },
-      { key: "h", text: "Warum Kinder mehr Sport brauchen" },
-      { key: "i", text: "Ein Restaurant schließt nach 40 Jahren" },
-      { key: "j", text: "Weniger Autos in der Innenstadt" },
+      { key: "a", text: "Hilfe von nebenan" },
+      { key: "b", text: "Mehr Platz für Radfahrer" },
+      { key: "c", text: "Warum Kinder mehr Sport brauchen" },
+      { key: "d", text: "Arbeiten, wo man will" },
+      { key: "e", text: "Weniger Autos in der Innenstadt" },
+      { key: "f", text: "Ohne Handy lernt es sich besser" },
+      { key: "g", text: "Deutsch lernen neben dem Beruf" },
+      { key: "h", text: "Ein Restaurant schließt nach 40 Jahren" },
+      { key: "i", text: "Teurer Urlaub in den Bergen" },
+      { key: "j", text: "Neue Öffnungszeiten im Rathaus" },
     ],
 
     texts: [
       {
         nr: 1,
         text: "In Siegen sollen bis zum nächsten Sommer drei neue Radwege entstehen. Die Stadt möchte damit vor allem Berufstätige ansprechen, die bisher mit dem Auto zur Arbeit fahren. Geplant sind breitere Wege und sichere Abstellplätze am Bahnhof. Wer auf das Rad umsteigt, spart Geld und tut gleichzeitig etwas für seine Gesundheit.",
-        answerKey: "a",
+        answerKey: "b",
         why: {
-          de: "Der Text handelt von neuen Radwegen und Abstellplätzen — also von mehr Platz für Radfahrer. »Weniger Autos in der Innenstadt« (j) klingt ähnlich, steht aber nirgends: es geht um das Angebot fürs Rad, nicht um ein Verbot fürs Auto.",
-          en: "The text is about new cycle paths and parking — that is more space for cyclists. 'Weniger Autos in der Innenstadt' (j) sounds close but is never said: this is about providing for bikes, not restricting cars.",
-          it: "Il testo parla di nuove piste ciclabili e parcheggi: quindi più spazio per i ciclisti. »Weniger Autos in der Innenstadt« (j) sembra simile ma non compare: si parla di offerta per le bici, non di divieti per le auto.",
-          bn: "লেখাটি নতুন সাইকেল পথ ও রাখার জায়গা নিয়ে — অর্থাৎ সাইকেল চালকদের জন্য বেশি জায়গা। »Weniger Autos in der Innenstadt« (j) কাছাকাছি শোনালেও লেখায় নেই: এখানে সাইকেলের সুবিধার কথা, গাড়ি নিষেধের কথা নয়।",
+          de: "Der Text handelt von neuen Radwegen und Abstellplätzen — also von mehr Platz für Radfahrer. »Weniger Autos in der Innenstadt« (e) klingt ähnlich, steht aber nirgends: es geht um das Angebot fürs Rad, nicht um ein Verbot fürs Auto.",
+          en: "The text is about new cycle paths and parking — that is more space for cyclists. 'Weniger Autos in der Innenstadt' (e) sounds close but is never said: this is about providing for bikes, not restricting cars.",
+          it: "Il testo parla di nuove piste ciclabili e parcheggi: quindi più spazio per i ciclisti. »Weniger Autos in der Innenstadt« (e) sembra simile ma non compare: si parla di offerta per le bici, non di divieti per le auto.",
+          bn: "লেখাটি নতুন সাইকেল পথ ও রাখার জায়গা নিয়ে — অর্থাৎ সাইকেল চালকদের জন্য বেশি জায়গা। »Weniger Autos in der Innenstadt« (e) কাছাকাছি শোনালেও লেখায় নেই: এখানে সাইকেলের সুবিধার কথা, গাড়ি নিষেধের কথা নয়।",
         },
       },
       {
         nr: 2,
         text: "Seit der Pandemie arbeiten viele Angestellte zwei oder drei Tage pro Woche von zu Hause. Eine neue Studie zeigt: Die meisten sind damit zufrieden und fühlen sich weniger gestresst. Probleme gibt es vor allem dann, wenn die Wohnung klein ist oder die Internetverbindung nicht stabil funktioniert.",
-        answerKey: "b",
+        answerKey: "d",
         why: {
           de: "Es geht um Homeoffice — also darum, den Arbeitsort frei zu wählen. Genau das sagt »Arbeiten, wo man will«.",
           en: "This is about working from home — choosing where you work. That is exactly what 'Arbeiten, wo man will' says.",
@@ -73,7 +73,7 @@ export const les01: LesenSet = {
       {
         nr: 3,
         text: "Die Volkshochschule bietet ab Oktober Abendkurse für Erwachsene an, die tagsüber arbeiten. Der Unterricht findet zweimal pro Woche von 18 bis 20 Uhr statt. Die Kurse sind besonders für Menschen gedacht, die schon einen Job haben, aber ihre Sprachkenntnisse für den Beruf verbessern möchten.",
-        answerKey: "c",
+        answerKey: "g",
         why: {
           de: "Abendkurse für Berufstätige, die ihr Deutsch für die Arbeit verbessern wollen — »neben dem Beruf« fasst genau das zusammen.",
           en: "Evening classes for people in work who want to improve their German for the job — 'neben dem Beruf' sums that up exactly.",
@@ -84,7 +84,7 @@ export const les01: LesenSet = {
       {
         nr: 4,
         text: "In der Marienstraße haben Bewohner eine Gruppe gegründet. Wer Hilfe braucht — beim Einkaufen, bei Formularen oder beim Weg zum Arzt — schreibt eine Nachricht, und jemand aus der Straße meldet sich. Besonders ältere Menschen nutzen das Angebot gern. Bezahlt wird nichts; man hilft sich einfach gegenseitig.",
-        answerKey: "d",
+        answerKey: "a",
         why: {
           de: "Nachbarn helfen Nachbarn, kostenlos. »Hilfe von nebenan« beschreibt genau diese Nachbarschaftshilfe.",
           en: "Neighbours helping neighbours, free of charge. 'Hilfe von nebenan' describes exactly that.",
@@ -95,12 +95,12 @@ export const les01: LesenSet = {
       {
         nr: 5,
         text: "An einer Schule in Köln müssen Schüler ihre Handys morgens abgeben. Nach einem Jahr ziehen die Lehrer eine positive Bilanz: In den Pausen wird wieder mehr gesprochen und gespielt, und die Noten haben sich leicht verbessert. Einige Eltern waren am Anfang dagegen, sind inzwischen aber überzeugt.",
-        answerKey: "e",
+        answerKey: "f",
         why: {
-          de: "Ohne Handy sind die Noten besser geworden. Das ist die Aussage der Überschrift e.",
-          en: "Without phones the grades improved. That is what heading e states.",
-          it: "Senza cellulari i voti sono migliorati. È ciò che afferma il titolo e.",
-          bn: "মোবাইল ছাড়া নম্বর ভালো হয়েছে। শিরোনাম e ঠিক সেটাই বলে।",
+          de: "Ohne Handy sind die Noten besser geworden — genau das sagt »Ohne Handy lernt es sich besser«.",
+          en: "Without phones the grades improved — which is exactly what 'Ohne Handy lernt es sich besser' says.",
+          it: "Senza cellulari i voti sono migliorati: è esattamente ciò che dice »Ohne Handy lernt es sich besser«.",
+          bn: "মোবাইল ছাড়া নম্বর ভালো হয়েছে — »Ohne Handy lernt es sich besser« ঠিক সেটাই বলে।",
         },
       },
     ],
@@ -129,11 +129,11 @@ Nach der Ausbildung übernehmen die meisten Betriebe ihre Auszubildenden. Wer m�
         nr: 6,
         question: "Was bedeutet »dual« bei einer Ausbildung?",
         options: [
-          "Man lernt an zwei Orten.",
           "Man lernt zwei Berufe gleichzeitig.",
+          "Man lernt an zwei Orten.",
           "Man arbeitet nur zwei Tage pro Woche.",
         ],
-        answerIndex: 0,
+        answerIndex: 1,
         why: {
           de: "Der Text erklärt es direkt: »an zwei Orten … im Betrieb und in der Berufsschule«. Die anderen beiden Antworten stehen so nirgends.",
           en: "The text says it directly: 'an zwei Orten … im Betrieb und in der Berufsschule'. The other two answers are never stated.",
