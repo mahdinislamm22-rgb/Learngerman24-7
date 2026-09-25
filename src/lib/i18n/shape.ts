@@ -34,7 +34,6 @@ export type Dict = {
     groupPractice: string;
     groupExam: string;
     groupPersonal: string;
-    allSections: string;
     switchToA0: string;
     switchToB1: string;
   };
@@ -230,7 +229,8 @@ export type Dict = {
       | "entschuldigung"
       | "termin"
       | "wohnung"
-      | "kurs",
+      | "kurs"
+      | "bewerbung",
       string
     >;
     mistakeCat: Record<
@@ -389,22 +389,57 @@ export type Dict = {
     allWords: string;
     allWordsNote: string;
     trainerNote: string;
-    typeAnswer: string;
-    checkAnswer: string;
-    correctAnswer: string;
-    solution: string;
-    studyMode: string;
-    recallMode: string;
-    recallModeNote: string;
-    quizMode: string;
-    quizModeNote: string;
-    chooseAnswer: string;
     priority: string;
     seenIn: string;
     roundDone: string;
     roundNote: string;
     nextRound: string;
     finish: string;
+  };
+
+  pruefungen: {
+    title: string;
+    sub: string;
+    formatTitle: string;
+    formatText: string;
+    available: string;
+    comingSoon: string;
+    beforeYouStart: string;
+    rule1: string;
+    rule2: string;
+    rule3: string;
+    rule4: string;
+    passLine: string;
+    startExam: string;
+    toListening: string;
+    toWriting: string;
+    finishExam: string;
+    noGoingBack: string;
+    overtime: string;
+    grading: string;
+    gradingNote: string;
+    gradeFailed: string;
+    passed: string;
+    notYet: string;
+    passNeeds: string;
+    marginOver: string;
+    marginUnder: string;
+    bySection: string;
+    itemsCorrect: string;
+    writingNotMarked: string;
+    whatWentWrong: string;
+    whatWentWrongNote: string;
+    wrong: string;
+    recurring: string;
+    questions: string;
+    reviewLesson: string;
+    noMistakes: string;
+    yourLetter: string;
+    seeAllCorrections: string;
+    allAnswers: string;
+    allAnswersNote: string;
+    noAnswer: string;
+    backToList: string;
   };
 
   a0: {

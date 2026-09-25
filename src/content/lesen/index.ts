@@ -1,5 +1,7 @@
 import { les01 } from "./set-01";
-import type { LesenSet } from "./types";
+import { les02 } from "./set-02";
+import { les03 } from "./set-03";
+import { tokenize, type LesenSet } from "./types";
 
 export type {
   LesenSet,
@@ -18,7 +20,7 @@ export {
   LESEN_POINTS_PER_ITEM,
 } from "./types";
 
-export const LESEN_SETS: LesenSet[] = [les01];
+export const LESEN_SETS: LesenSet[] = [les01, les02, les03];
 
 export function getLesenSet(code: string): LesenSet | undefined {
   return LESEN_SETS.find((s) => s.code === code);
@@ -94,6 +96,24 @@ export function validateLesenSet(set: LesenSet): string[] {
     if (s.answerKey !== "x") {
       if (usedAds.has(s.answerKey)) p(`advert "${s.answerKey}" is the answer twice.`);
       usedAds.add(s.answerKey);
+    }
+  }
+
+  // A glossary entry whose word never occurs in the set is invisible: the
+  // learner taps a word, the lookup misses, and nothing happens. Silent
+  // again — so it gets checked.
+  const allText = [
+    ...set.teil1.texts.map((t) => t.text),
+    set.teil2.heading,
+    set.teil2.text,
+    ...set.teil2.questions.flatMap((q) => [q.question, ...q.options]),
+    ...set.teil3.anzeigen.flatMap((a) => [a.title, a.text]),
+    ...set.teil3.situations.map((s) => s.text),
+  ].join(" ");
+  const words = new Set(tokenize(allText).map((t) => t.word.toLowerCase()));
+  for (const entry of set.glossary) {
+    if (!words.has(entry.word.toLowerCase())) {
+      p(`glossary word "${entry.word}" never appears in the texts.`);
     }
   }
 

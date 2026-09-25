@@ -1,5 +1,6 @@
 import { sb01 } from "./set-01";
 import { sb02 } from "./set-02";
+import { sb03 } from "./set-03";
 import { splitGaps, type SbSet } from "./types";
 
 export type { SbSet, SbTeil1Item, SbTeil2Item, SbBankEntry } from "./types";
@@ -10,7 +11,7 @@ export {
   SB_TOTAL_POINTS,
 } from "./types";
 
-export const SB_SETS: SbSet[] = [sb01, sb02];
+export const SB_SETS: SbSet[] = [sb01, sb02, sb03];
 
 export function getSbSet(code: string): SbSet | undefined {
   return SB_SETS.find((s) => s.code === code);

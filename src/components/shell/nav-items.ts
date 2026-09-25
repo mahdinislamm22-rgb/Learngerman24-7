@@ -56,7 +56,7 @@ export const NAV: NavItem[] = [
   { href: "/schreiben", key: "writing", icon: PenLine, mode: "ueben", primary: true, ready: true },
   { href: "/hoeren", key: "listening", icon: Headphones, mode: "ueben", ready: true },
 
-  { href: "/pruefungen", key: "exams", icon: Target, mode: "pruefung", ready: false, phase: 5 },
+  { href: "/pruefungen", key: "exams", icon: Target, mode: "pruefung", ready: true },
 
   { href: "/fehler", key: "mistakes", icon: CircleAlert, mode: "meta", primary: true, ready: true },
   { href: "/wiederholung", key: "review", icon: RotateCcw, mode: "meta", ready: false, phase: 4 },

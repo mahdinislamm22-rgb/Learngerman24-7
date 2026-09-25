@@ -1,4 +1,6 @@
 import { hoer01 } from "./set-01";
+import { hoer02 } from "./set-02";
+import { hoer03 } from "./set-03";
 import { hoerItems, type HoerSet } from "./types";
 
 export type { HoerSet, HoerTeil, HoerTrack, HoerItem } from "./types";
@@ -9,7 +11,7 @@ export {
   HOER_POINTS_PER_ITEM,
 } from "./types";
 
-export const HOER_SETS: HoerSet[] = [hoer01];
+export const HOER_SETS: HoerSet[] = [hoer01, hoer02, hoer03];
 
 export function getHoerSet(code: string): HoerSet | undefined {
   return HOER_SETS.find((s) => s.code === code);

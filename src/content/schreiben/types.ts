@@ -20,7 +20,8 @@ export type SchreibenTask = {
     | "entschuldigung"
     | "termin"
     | "wohnung"
-    | "kurs";
+    | "kurs"
+    | "bewerbung";
   register: "formell" | "halbformell" | "informell";
   /** Who you are writing to and why, in the learner's language. */
   situation: Multi;
