@@ -28,6 +28,7 @@ export type Dict = {
     tutor: string;
     progress: string;
     plan: string;
+    allSections: string;
     lessons: string;
     practice: string;
     groupLearn: string;
@@ -389,6 +390,16 @@ export type Dict = {
     allWords: string;
     allWordsNote: string;
     trainerNote: string;
+    studyMode: string;
+    recallMode: string;
+    recallModeNote: string;
+    quizMode: string;
+    quizModeNote: string;
+    chooseAnswer: string;
+    typeAnswer: string;
+    checkAnswer: string;
+    correctAnswer: string;
+    solution: string;
     priority: string;
     seenIn: string;
     roundDone: string;
