@@ -115,7 +115,7 @@ export const les05: LesenSet = {
       },
       {
         nr: 5,
-        text: "Mit siebenunddreißig noch einmal die Schulbank drücken? Für Anja Weber war das der einzige Weg. Nach fünfzehn Jahren im Verkauf konnte sie wegen ihres Rückens nicht mehr stehen. Die Agentur für Arbeit bezahlte ihr eine zweijährige Umschulung zur Bürokauffrau. Heute sagt sie, die schwierigste Zeit sei nicht der Unterricht gewesen, sondern die ersten Wochen, in denen sie die Jüngste im Kurs nicht war, aber auch nicht mehr die Schnellste.",
+        text: "Mit siebenunddreißig noch einmal die Schulbank drücken? Für Anja Weber war das der einzige Weg. Nach fünfzehn Jahren im Verkauf konnte sie wegen ihres Rückens nicht mehr stehen. Die Agentur für Arbeit bezahlte ihr eine zweijährige Umschulung zur Bürokauffrau. Heute sagt sie, die schwierigste Zeit sei nicht der Unterricht gewesen, sondern die ersten Wochen, in denen sie zwar nicht die Älteste im Kurs war, aber auch nicht mehr die Schnellste.",
         answerKey: "b",
         why: {
           de: "»Mit siebenunddreißig noch einmal die Schulbank drücken«, »Umschulung« — ein kompletter Neuanfang nach dreißig. Das ist Überschrift b).",
@@ -142,11 +142,11 @@ export const les05: LesenSet = {
 
 Eine Ausbildung dauert meist drei Jahre, in einigen Berufen zweieinhalb. Wer gute Noten hat oder schon Vorkenntnisse mitbringt, kann sie auf Antrag verkürzen. Das ist keine Ausnahme: Etwa ein Fünftel aller Auszubildenden macht davon Gebrauch. Umgekehrt kann man verlängern, wenn es nicht gut läuft — auch das ist vorgesehen und kein Makel.
 
-Bezahlt wird vom ersten Tag an. Die Vergütung steigt jedes Lehrjahr und liegt am Anfang je nach Beruf zwischen achthundert und tausendzweihundert Euro im Monat. Reich wird davon niemand, aber es ist ein entscheidender Unterschied zu einem Studium, das Geld kostet statt welches zu bringen.
+Bezahlt wird vom ersten Tag an. Die Vergütung steigt jedes Lehrjahr und liegt am Anfang je nach Beruf zwischen achthundert und tausendzweihundert Euro im Monat. Reich wird davon niemand, aber es ist ein entscheidender Unterschied zu einem Studium, das Geld kostet, statt Geld zu bringen.
 
 Für Bewerberinnen und Bewerber aus dem Ausland gibt es zwei verbreitete Missverständnisse. Das erste: Man brauche ein anerkanntes deutsches Schulzeugnis. Das stimmt nicht — für die meisten Ausbildungsberufe gibt es überhaupt keine gesetzliche Mindestvoraussetzung, die Betriebe entscheiden selbst. Das zweite: Man müsse perfekt Deutsch sprechen. Verlangt wird in der Regel B1, manchmal B2, und viele Betriebe sind flexibel, wenn der Rest stimmt.
 
-Was wirklich zählt, sagen Ausbilder erstaunlich einheitlich: Zuverlässigkeit. Wer pünktlich kommt, Bescheid sagt, wenn etwas nicht klappt, und nachfragt statt zu raten, hat bessere Karten als jemand mit besseren Noten. Das lässt sich in keiner Bewerbung behaupten — aber in einem Praktikum zeigen.`,
+Was wirklich zählt, sagen Ausbilder erstaunlich einheitlich: Zuverlässigkeit. Wer pünktlich kommt, Bescheid sagt, wenn etwas nicht klappt, und nachfragt, statt zu raten, hat bessere Karten als jemand mit besseren Noten. Das lässt sich in keiner Bewerbung behaupten — aber in einem Praktikum zeigen.`,
 
     questions: [
       {
@@ -324,8 +324,8 @@ Was wirklich zählt, sagen Ausbilder erstaunlich einheitlich: Zuverlässigkeit. 
         text: "Sie sind zwanzig, haben keinen Ausbildungsplatz gefunden und möchten trotzdem schon in einem Betrieb anfangen.",
         answerKey: "i",
         why: {
-          de: "»Für junge Leute unter fünfundzwanzig ohne Ausbildungsplatz. Mit Vergütung.« Alter und Lage passen genau. Anzeige d bietet zwar auch Betriebserfahrung, aber unbezahlt und kürzer.",
-          en: "'For young people under twenty-five without an apprenticeship. Paid.' Age and situation fit exactly. Advert d also offers company experience, but unpaid and shorter.",
+          de: "»Für junge Leute unter fünfundzwanzig ohne Ausbildungsplatz. Mit Vergütung.« Alter und Lage passen genau. Anzeige d bietet zwar auch Betriebserfahrung, aber deutlich kürzer.",
+          en: "'For young people under twenty-five without an apprenticeship. Paid.' Age and situation fit exactly. Advert d also offers company experience, but much shorter.",
           it: "»Per giovani sotto i venticinque senza posto di formazione. Retribuito.« Età e situazione combaciano.",
           bn: "»পঁচিশের নিচে, প্রশিক্ষণের জায়গা পাননি এমন তরুণদের জন্য। বেতনসহ।« বয়স ও অবস্থা দুটোই মেলে।",
         },

@@ -20,13 +20,13 @@ function g(
  * Consumer texts run on a handful of words that look interchangeable and
  * are not: umtauschen, reklamieren, zurückgeben, widerrufen. The whole
  * set is built to force those apart, because the exam does the same:
- *   · Teil 2 question 9 rests on the difference between a legal right
+ *   · Teil 2 question 7 rests on the difference between a legal right
  *     (Reklamation, because something is broken) and a shop's goodwill
  *     (Umtausch, because you changed your mind).
- *   · Teil 3 situation 14 wants a repair for a two-year-old machine; one
- *     advert repairs, one covers two years — neither does both.
- *   · Teil 1 heading b) and text 5 share the word "Garantie", but the
- *     text is about what the law gives you without any guarantee.
+ *   · Teil 3 situation 14 wants a repair AND collection; advert a repairs
+ *     but makes you carry it and help, advert b does both.
+ *   · Teil 1 heading b) promises a manufacturer's guarantee, while text 5
+ *     is about the legal right you have regardless of one.
  */
 export const les07: LesenSet = {
   code: "LES-07",
@@ -117,7 +117,7 @@ export const les07: LesenSet = {
         text: "Unabhängig davon, was ein Hersteller verspricht, haftet der Verkäufer zwei Jahre lang dafür, dass eine Ware in Ordnung ist. Zeigt sich in den ersten zwölf Monaten ein Fehler, muss der Verkäufer beweisen, dass die Ware beim Kauf noch heil war — nicht der Kunde. Diese Regel gilt in ganz Europa, und niemand kann sie im Kleingedruckten ausschließen.",
         answerKey: "i",
         why: {
-          de: "»haftet der Verkäufer zwei Jahre lang«, »niemand kann sie ausschließen« — ein Recht, das jedem Kunden zusteht. Vorsicht bei Überschrift b): Der Text sagt ausdrücklich »unabhängig davon, was ein Hersteller verspricht« — eine Garantie ist etwas Freiwilliges, dieses Recht nicht.",
+          de: "»haftet der Verkäufer zwei Jahre lang«, »niemand kann sie im Kleingedruckten ausschließen« — ein Recht, das jedem Kunden zusteht. Vorsicht bei Überschrift b): Der Text sagt ausdrücklich »unabhängig davon, was ein Hersteller verspricht« — eine Garantie ist etwas Freiwilliges, dieses Recht nicht.",
           en: "'the seller is liable for two years', 'nobody can exclude it' — a right every customer has. Careful with heading b): the text says explicitly 'regardless of what a manufacturer promises' — a guarantee is voluntary, this right is not.",
           it: "»il venditore risponde per due anni«, »nessuno può escluderlo«: un diritto di ogni cliente. Attenzione al titolo b): la garanzia è volontaria, questo diritto no.",
           bn: "»বিক্রেতা দুই বছর দায়ী«, »কেউ এটা বাদ দিতে পারে না« — প্রতিটি ক্রেতার অধিকার। শিরোনাম b) নিয়ে সতর্ক: গ্যারান্টি স্বেচ্ছামূলক, এই অধিকার নয়।",
@@ -143,7 +143,7 @@ Der Umtausch ist das, woran die meisten zuerst denken: Der Pullover hat die fals
 
 Die Reklamation ist etwas anderes. Hier ist die Ware nicht in Ordnung: Der Reißverschluss klemmt, das Gerät geht nach drei Wochen kaputt. Dann hat der Kunde ein Recht, und zwar zwei Jahre lang. Der Verkäufer darf zuerst versuchen, die Sache zu reparieren oder zu ersetzen. Erst wenn das zweimal misslingt oder zu lange dauert, kann der Kunde das Geld zurückverlangen. Wichtig ist, dass man sich an den Verkäufer wendet, nicht an den Hersteller — auch wenn das Gerät eine Herstellergarantie hat.
 
-Der Widerruf gilt schließlich nur für Verträge, die aus der Ferne geschlossen wurden: online, am Telefon, an der Haustür. Vierzehn Tage lang darf man ohne jede Begründung zurücktreten. Der Gedanke dahinter ist einfach: Wer eine Hose im Laden anprobieren kann, braucht diesen Schutz nicht; wer sie nur auf einem Foto gesehen hat, schon.
+Der Widerruf gilt schließlich nur für Verträge, die nicht im Laden geschlossen wurden: online, am Telefon, an der Haustür. Vierzehn Tage lang darf man ohne jede Begründung zurücktreten. Der Gedanke dahinter ist einfach: Wer eine Hose im Laden anprobieren kann, braucht diesen Schutz nicht; wer sie nur auf einem Foto gesehen hat, schon.
 
 Ein praktischer Rat zum Schluss: Der Kassenbon ist kein Beweis für das Recht, aber der einfachste Beweis dafür, wann und wo man gekauft hat. Ein Foto davon genügt, denn das Papier verblasst oft schon nach wenigen Monaten.`,
 
@@ -158,7 +158,7 @@ Ein praktischer Rat zum Schluss: Der Kassenbon ist kein Beweis für das Recht, a
         ],
         answerIndex: 1,
         why: {
-          de: "»drei ganz verschiedene Dinge oft in einen Topf geworfen werden« — »in einen Topf werfen« heißt: nicht unterscheiden, für dasselbe halten. Eine Redewendung, die du dir merken kannst.",
+          de: "»drei ganz verschiedene Dinge oft in einen Topf geworfen werden« — die Redewendung in einen Topf werfen heißt: nicht unterscheiden, für dasselbe halten. Eine Redewendung, die du dir merken kannst.",
           en: "'three quite different things are often thrown into one pot' — 'in einen Topf werfen' means treating them as the same. An idiom worth remembering.",
           it: "»mettere nello stesso calderone« significa non distinguere, considerare uguali.",
           bn: "»তিনটি ভিন্ন জিনিস প্রায়ই এক পাত্রে ফেলা হয়« — »in einen Topf werfen« মানে আলাদা না করা, এক ভাবা।",
@@ -401,7 +401,7 @@ Ein praktischer Rat zum Schluss: Der Kassenbon ist kein Beweis für das Recht, a
       },
       {
         nr: 20,
-        text: "Sie haben vor zwei Monaten im Laden Schuhe gekauft, die Ihnen nicht mehr gefallen. Sie sind heil und Sie möchten Ihr Geld zurück.",
+        text: "Sie haben vor zwei Monaten im Laden Schuhe gekauft, die Ihnen nicht mehr gefallen. Die Schuhe sind heil, und Sie möchten Ihr Geld zurück.",
         answerKey: "x",
         why: {
           de: "Keine Anzeige hilft — und der Lesetext erklärt, warum. Die Schuhe sind heil, also ist es keine Reklamation; gekauft wurde im Laden, also gibt es keinen Widerruf; und zwei Monate sind ohnehin über jeder Umtauschfrist. Anzeige c und k helfen nur bei einem Streit, in dem man im Recht ist — hier hat man schlicht keinen Anspruch. Teil 3 prüft, ob du erkennst, wann es nichts zu holen gibt.",

@@ -104,7 +104,7 @@ export const hoer04: HoerSet = {
           items: [
             {
               nr: 3,
-              statement: "Man soll anrufen, um zu erfahren, wie weit der Antrag ist.",
+              statement: "Man soll anrufen, um zu erfahren, wie weit die Bearbeitung ist.",
               answer: false,
               why: {
                 de: "»Bitte rufen Sie vorher nicht an, um den Stand zu erfragen.« Genau das Gegenteil wird gesagt — und begründet: es verlängert die Bearbeitung.",
@@ -275,8 +275,8 @@ export const hoer04: HoerSet = {
               statement: "Für ein Bankkonto braucht man auf jeden Fall die Steuernummer.",
               answer: false,
               why: {
-                de: "»Manche wollen auch die Steuernummer, aber das ist nicht überall so.« »Manche« und »nicht überall« widersprechen dem »auf jeden Fall« der Aussage. Verlangt wird sicher nur die Meldebescheinigung und der Pass.",
-                en: "'Some also want the tax number, but that is not the case everywhere.' 'Manche' and 'nicht überall' contradict the statement's 'definitely'. Only the registration certificate and passport are certain.",
+                de: "»Manche wollen auch die Steuernummer, aber das ist nicht überall so.« »Manche« und »nicht überall« widersprechen dem »auf jeden Fall« der Aussage. Sicher verlangt wird nur die Meldebescheinigung.",
+                en: "'Some also want the tax number, but that is not the case everywhere.' 'Manche' and 'nicht überall' contradict the statement's 'definitely'. Only the registration certificate is certain.",
                 it: "»Alcune vogliono anche il codice fiscale, ma non ovunque.« »Alcune« contraddice »in ogni caso«.",
                 bn: "»কেউ কেউ ট্যাক্স নম্বরও চায়, তবে সবখানে নয়।« »কেউ কেউ« ও »সবখানে নয়« বক্তব্যের »অবশ্যই«-কে খণ্ডন করে।",
               },
@@ -363,7 +363,7 @@ export const hoer04: HoerSet = {
             bn: "শহরের লাইব্রেরির ঘোষণা",
           },
           transcript:
-            "Ein Hinweis auf unser Angebot: Jeden Dienstag und Freitag hilft Ihnen jemand beim Ausfüllen von Anträgen. Das Angebot ist kostenlos und ohne Anmeldung. Wir können allerdings keine Rechtsberatung geben — dafür wenden Sie sich bitte an einen Anwalt.",
+            "Ein Hinweis auf unser Angebot hier in der Stadtbibliothek: Jeden Dienstag und Freitag hilft Ihnen jemand beim Ausfüllen von Anträgen. Das Angebot ist kostenlos und ohne Anmeldung. Wir können allerdings keine Rechtsberatung geben — dafür wenden Sie sich bitte an einen Anwalt.",
           items: [
             {
               nr: 17,

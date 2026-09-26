@@ -41,7 +41,7 @@ export const sb06: SbSet = {
 
 am vergangenen Freitag {1} ich mit dem Zug von Siegen nach Köln fahren. Ich war {2} meiner Familie unterwegs, wir hatten Sitzplätze reserviert.
 
-Der Zug hatte von Anfang an Verspätung. {3} die Anzeige zeigte zuerst zehn Minuten, dann dreißig. Am Ende {4} wir erst zwei Stunden später in Köln angekommen.
+Der Zug hatte von Anfang an Verspätung. {3} zeigte die Anzeige zehn Minuten, dann dreißig. Am Ende {4} wir erst zwei Stunden später in Köln angekommen.
 
 Das Schlimmste war aber nicht die Verspätung. Im ganzen Zug {5} es keine Information, und das Personal konnte uns nichts sagen. Meine Tochter ist fünf Jahre alt, und wir mussten {6} eine Stunde im Gang stehen, obwohl wir Plätze gebucht hatten.
 

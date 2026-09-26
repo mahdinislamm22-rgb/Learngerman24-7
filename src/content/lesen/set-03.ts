@@ -255,7 +255,7 @@ Und noch etwas: Wenn ein Termin nicht passt, sollte man ihn absagen, am besten e
       {
         key: "b",
         title: "Zahnarztpraxis Lang – nur für Kinder",
-        text: "Wir behandeln ausschließlich Kinder bis vierzehn Jahre. Termine Montag bis Donnerstag, achtzehn Uhr bis zwanzig Uhr auch nach der Schule. Am Wochenende geschlossen.",
+        text: "Wir behandeln ausschließlich Kinder bis vierzehn Jahre. Termine Montag bis Donnerstag von acht bis achtzehn Uhr, auf Wunsch auch nach der Schule. Am Wochenende geschlossen.",
       },
       {
         key: "c",
@@ -403,7 +403,7 @@ Und noch etwas: Wenn ein Termin nicht passt, sollte man ihn absagen, am besten e
         text: "Ihre Ärztin hat gesagt, Sie sollten sich gesünder ernähren, und Sie möchten mit jemandem persönlich darüber sprechen.",
         answerKey: "j",
         why: {
-          de: "»Einzelberatung für Menschen, die … sich gesünder ernähren möchten«. »Einzelberatung« entspricht dem »persönlich sprechen« der Situation.",
+          de: "»Einzelberatung für Menschen, die … sich gesünder ernähren möchten«. »Einzelberatung« entspricht dem »persönlich darüber sprechen« der Situation.",
           en: "'One-to-one advice for people who want to eat more healthily.' 'Einzelberatung' matches the 'speak to someone in person' of the situation.",
           it: "»Consulenza individuale per chi vuole mangiare in modo più sano.«",
           bn: "»যারা স্বাস্থ্যকর খেতে চান তাদের জন্য একক পরামর্শ«। »Einzelberatung« পরিস্থিতির »সরাসরি কথা বলা«র সঙ্গে মেলে।",

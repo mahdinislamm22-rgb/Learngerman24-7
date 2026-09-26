@@ -5,6 +5,8 @@ import { les04 } from "./set-04";
 import { les05 } from "./set-05";
 import { les06 } from "./set-06";
 import { les07 } from "./set-07";
+import { les08 } from "./set-08";
+import { les09 } from "./set-09";
 import { tokenize, type LesenSet } from "./types";
 
 export type {
@@ -24,7 +26,7 @@ export {
   LESEN_POINTS_PER_ITEM,
 } from "./types";
 
-export const LESEN_SETS: LesenSet[] = [les01, les02, les03, les04, les05, les06, les07];
+export const LESEN_SETS: LesenSet[] = [les01, les02, les03, les04, les05, les06, les07, les08, les09];
 
 export function getLesenSet(code: string): LesenSet | undefined {
   return LESEN_SETS.find((s) => s.code === code);
@@ -64,6 +66,23 @@ export function lesenItems(set: LesenSet) {
  * as nothing at all rather than as an error, so it has to be checked
  * rather than reviewed by eye.
  */
+
+/** Compare quotes loosely: punctuation and spacing vary, wording must not. */
+function normalise(s: string): string {
+  return s.toLowerCase().replace(/[.,;:!?»«"'…–—]/g, "").replace(/\s+/g, " ").trim();
+}
+
+/** Multi-word German phrases an explanation quotes from the material. */
+function quotedParts(why: string): string[] {
+  const out: string[] = [];
+  for (const m of why.matchAll(/»([^«]+)«/g))
+    for (const part of m[1].split("…")) {
+      const t = part.trim();
+      if (t.includes(" ") && t.length >= 18) out.push(t);
+    }
+  return out;
+}
+
 export function validateLesenSet(set: LesenSet): string[] {
   const problems: string[] = [];
   const p = (msg: string) => problems.push(`${set.code}: ${msg}`);
@@ -151,6 +170,30 @@ export function validateLesenSet(set: LesenSet): string[] {
     }
   }
 
+  // An explanation that quotes the text is only worth reading if the quote
+  // is really there. Rewriting a text — or reordering the adverts — can
+  // leave a quote pointing at words the learner will never find, so every
+  // German quote is checked against the German material.
+  const corpus = normalise(
+    [
+      ...set.teil1.texts.map((t) => t.text),
+      ...set.teil1.headings.map((h) => h.text),
+      set.teil2.heading,
+      set.teil2.text,
+      ...set.teil2.questions.flatMap((q) => [q.question, ...q.options]),
+      ...set.teil3.anzeigen.flatMap((a) => [a.title, a.text]),
+      ...set.teil3.situations.map((x) => x.text),
+    ].join(" · "),
+  );
+  const whys: [string, string][] = [
+    ...set.teil1.texts.map((t) => [`text ${t.nr}`, t.why.de ?? ""] as [string, string]),
+    ...set.teil2.questions.map((q) => [`question ${q.nr}`, q.why.de ?? ""] as [string, string]),
+    ...set.teil3.situations.map((x) => [`situation ${x.nr}`, x.why.de ?? ""] as [string, string]),
+  ];
+  for (const [where, why] of whys)
+    for (const part of quotedParts(why))
+      if (!corpus.includes(normalise(part)))
+        p(`${where}: the explanation quotes "${part}", which is not in the material.`);
   // Numbering must run 1–20 across the three parts, as on the paper.
   const nrs = lesenItems(set).map((i) => i.nr);
   for (let n = 1; n <= 20; n++) {

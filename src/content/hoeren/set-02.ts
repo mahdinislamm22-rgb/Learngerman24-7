@@ -80,7 +80,7 @@ export const hoer02: HoerSet = {
             bn: "একটি কোম্পানির ঘোষণা",
           },
           transcript:
-            "Liebe Kolleginnen und Kollegen, eine kurze Information: Die Kantine bleibt am Freitag geschlossen, weil die Küche renoviert wird. Im Erdgeschoss steht an diesem Tag ein Imbisswagen auf dem Hof. Ab Montag kochen wir wieder wie gewohnt.",
+            "Liebe Kolleginnen und Kollegen, eine kurze Information: Die Kantine bleibt am Freitag geschlossen, weil die Küche renoviert wird. An diesem Tag steht ein Imbisswagen auf dem Hof. Ab Montag kochen wir wieder wie gewohnt.",
           items: [
             {
               nr: 2,
@@ -108,13 +108,13 @@ export const hoer02: HoerSet = {
           items: [
             {
               nr: 3,
-              statement: "Tarek soll morgen um sechs Uhr in der Werkstatt sein.",
+              statement: "Tarek muss morgen erst um sechs Uhr da sein.",
               answer: false,
               why: {
-                de: "Sechs Uhr ist der Schichtbeginn. Da sein soll er schon »um halb sechs«, wegen des Gesprächs mit dem Chef. Beide Zeiten werden genannt — die Aussage nimmt die falsche.",
-                en: "Six is when the shift starts. He must be there at 'half past five' for the talk with the boss. Both times are said — the statement picks the wrong one.",
-                it: "Le sei è l'inizio del turno. Deve essere lì »alle cinque e mezza« per parlare con il capo. Vengono dette entrambe le ore — l'affermazione sceglie quella sbagliata.",
-                bn: "ছয়টা হলো শিফট শুরুর সময়। তাকে থাকতে হবে »সাড়ে পাঁচটায়«, বসের সঙ্গে কথা বলার জন্য। দুটো সময়ই বলা হয়েছে — বক্তব্যটি ভুলটা বেছে নিয়েছে।",
+                de: "Sechs Uhr ist der Schichtbeginn, aber da sein soll er schon »um halb sechs«, wegen des Gesprächs mit dem Chef. »erst um sechs« hieße: nicht früher — und genau das stimmt nicht.",
+                en: "Six is when the shift starts, but he must be there at 'half past five' for the talk with the boss. 'erst um sechs' would mean not before six — which is exactly what is not true.",
+                it: "Le sei è l'inizio del turno, ma deve essere lì »alle cinque e mezza« per parlare con il capo. »erst um sechs« significherebbe non prima delle sei, e non è così.",
+                bn: "ছয়টা শিফট শুরুর সময়, কিন্তু তাকে থাকতে হবে »সাড়ে পাঁচটায়«, বসের সঙ্গে কথা বলার জন্য। »erst um sechs« মানে ছয়টার আগে নয় — সেটাই ঠিক নয়।",
               },
             },
           ],
@@ -248,7 +248,7 @@ export const hoer02: HoerSet = {
               statement: "Amina hat schließlich doch an der Universität studiert.",
               answer: false,
               why: {
-                de: "Sie sagt, sie »wollte eigentlich studieren« — und dann ausdrücklich: »Studiert habe ich am Ende nicht.« Ein Plan, der genannt und wieder fallen gelassen wird, ist ein klassischer Prüfungstrick.",
+                de: "Sie sagt, sie »wollte eigentlich an der Universität studieren« — und dann ausdrücklich: »Studiert habe ich am Ende nicht.« Ein Plan, der genannt und wieder fallen gelassen wird, ist ein klassischer Prüfungstrick.",
                 en: "She says she 'actually wanted to study' — and then plainly: 'In the end I didn't study.' A plan that is mentioned and then dropped is a classic exam trick.",
                 it: "Dice che »in realtà voleva studiare« — e poi chiaramente: »Alla fine non ho studiato.« Un piano nominato e poi abbandonato è un classico trucco d'esame.",
                 bn: "তিনি বলেন »আসলে পড়তে চেয়েছিলেন« — এবং পরে স্পষ্টভাবে: »শেষ পর্যন্ত পড়িনি।« একটি পরিকল্পনা বলা হয়ে পরে বাদ দেওয়া — পরীক্ষার চেনা ফাঁদ।",
@@ -292,7 +292,7 @@ export const hoer02: HoerSet = {
               statement: "Ihre Eltern haben ihr bei der Bewerbung geholfen.",
               answer: false,
               why: {
-                de: "Von den Eltern ist im ganzen Interview nicht die Rede. Geholfen hat ein Bewerbungstraining bei einem Verein. In der Prüfung ist »kommt im Text nicht vor« immer falsch, nie »vielleicht«.",
+                de: "Von den Eltern ist im ganzen Interview nicht die Rede. Geholfen hat ein Bewerbungstraining bei einem Verein. In der Prüfung gilt: Was im Text nicht vorkommt, ist immer falsch — nie vielleicht.",
                 en: "Her parents are not mentioned anywhere in the interview. What helped was an application training course at a local association. In the exam, 'not in the text' is always falsch, never 'maybe'.",
                 it: "I genitori non compaiono mai nell'intervista. Ad aiutarla è stato un corso per candidature presso un'associazione. All'esame »non c'è nel testo« è sempre falso, mai »forse«.",
                 bn: "পুরো সাক্ষাৎকারে বাবা-মায়ের কথা একবারও নেই। সাহায্য করেছে একটি সংগঠনের আবেদন-প্রশিক্ষণ। পরীক্ষায় »লেখায় নেই« মানে সবসময় falsch, কখনোই »হয়তো« নয়।",

@@ -26,8 +26,8 @@ function g(
  * The built-in traps:
  *   · Teil 1 heading e) and text 2 both speak about "Termine", but the
  *     text is about what to do when you cannot GET one.
- *   · Teil 2 question 9 turns on "innerhalb von zwei Wochen" versus
- *     "nach zwei Wochen" — the same two words, opposite deadlines.
+ *   · Teil 2 question 7 turns on when the two-week deadline starts —
+ *     the day you move in, not the day you sign the contract.
  *   · Teil 3 situation 17 answers x: an advert offers exactly the right
  *     help, but only to people who live in a different district.
  */
@@ -98,7 +98,7 @@ export const les04: LesenSet = {
         text: "Immer mehr Wege zum Amt kann man sich sparen. Eine Meldebescheinigung, eine Geburtsurkunde oder die Ummeldung des Autos lassen sich in vielen Städten inzwischen im Internet bestellen. Man braucht dafür nur den Personalausweis mit Online-Funktion und ein Kartenlesegerät oder ein Handy mit der passenden App. Die Papiere kommen dann mit der Post nach Hause.",
         answerKey: "d",
         why: {
-          de: "»kann man sich sparen«, »im Internet bestellen«, »kommen mit der Post nach Hause« — alles heißt: von zu Hause aus. Das ist Überschrift d).",
+          de: "»kann man sich sparen«, »im Internet bestellen«, »mit der Post nach Hause« — alles heißt: von zu Hause aus. Das ist Überschrift d).",
           en: "'you can save yourself the trip', 'order online', 'come home by post' — all of it means: from home. That is heading d).",
           it: "»si può risparmiare«, »ordinare online«, »arrivano per posta«: tutto significa da casa.",
           bn: "»যাওয়া বাঁচানো যায়«, »ইন্টারনেটে অর্ডার«, »ডাকে বাড়িতে আসে« — সবই বলছে বাড়ি থেকে। এটাই শিরোনাম d)।",
@@ -109,7 +109,7 @@ export const les04: LesenSet = {
         text: "Amtliche Formulare sind auch für Muttersprachler schwer. In der Stadtbibliothek sitzt deshalb jeden Dienstag und Freitag jemand bereit, der beim Ausfüllen hilft — bei Anträgen für Wohngeld, Kindergeld oder das Jobcenter. Man muss sich nicht anmelden und zahlt nichts. Mitbringen sollte man alle Briefe, die man vom Amt bekommen hat, auch die, die man nicht versteht.",
         answerKey: "h",
         why: {
-          de: "»hilft beim Ausfüllen«, »muss sich nicht anmelden«, »zahlt nichts« — die drei Teile der Überschrift h) stehen alle im Text. Überschrift b) klingt ähnlich, betont aber die Sprache; hier geht es um das Ausfüllen allgemein.",
+          de: "»beim Ausfüllen hilft«, »muss sich nicht anmelden«, »zahlt nichts« — die drei Teile der Überschrift h) stehen alle im Text. Überschrift b) klingt ähnlich, betont aber die Sprache; hier geht es um das Ausfüllen allgemein.",
           en: "'helps with filling in', 'no appointment needed', 'costs nothing' — all three parts of heading h) are in the text. Heading b) sounds similar but stresses language; here it is about filling forms in general.",
           it: "»aiuta a compilare«, »senza appuntamento«, »gratis«: le tre parti del titolo h) ci sono tutte.",
           bn: "»পূরণে সাহায্য«, »নিবন্ধন লাগে না«, »খরচ নেই« — শিরোনাম h)-এর তিনটি অংশই লেখায় আছে।",

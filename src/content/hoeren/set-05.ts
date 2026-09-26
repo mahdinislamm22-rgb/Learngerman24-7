@@ -78,7 +78,7 @@ export const hoer05: HoerSet = {
           items: [
             {
               nr: 2,
-              statement: "Herr Brandt braucht noch ein Dokument zur Sprache.",
+              statement: "Herr Brandt braucht noch einen Nachweis über die Deutschkenntnisse.",
               answer: true,
               why: {
                 de: "»Was mir fehlt, ist ein Nachweis über Ihre Deutschkenntnisse.« Er nennt danach zwei Möglichkeiten, was das sein kann — das ändert nichts daran, dass etwas fehlt.",

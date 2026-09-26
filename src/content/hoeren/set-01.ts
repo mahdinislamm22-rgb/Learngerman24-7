@@ -184,7 +184,7 @@ export const hoer01: HoerSet = {
 
 Frau Klein: Sehr unterschiedliche Menschen. Früher waren es vor allem Studenten, heute sind die meisten Teilnehmer berufstätig. Viele arbeiten schon und möchten ihr Deutsch für die Arbeit verbessern.
 
-Moderator: Wie lange dauert es, bis man das Niveau B ein erreicht?
+Moderator: Wie lange dauert es, bis man das Niveau B eins erreicht?
 
 Frau Klein: Das hängt stark vom Einzelnen ab. Wer regelmäßig kommt und zu Hause übt, braucht meistens etwa neun Monate. Ohne das Üben zu Hause dauert es deutlich länger. Ich sage immer: Der Kurs allein reicht nicht.
 
@@ -220,7 +220,7 @@ Frau Klein: Sehr gern.`,
               statement: "Die meisten Teilnehmer sind heute Studenten.",
               answer: false,
               why: {
-                de: "»Früher waren es vor allem Studenten, heute sind die meisten berufstätig.« Das Wort »früher« kehrt die Aussage um.",
+                de: "»Früher waren es vor allem Studenten, heute sind die meisten Teilnehmer berufstätig.« Das Wort »früher« kehrt die Aussage um.",
                 en: "'Früher waren es vor allem Studenten, heute sind die meisten berufstätig.' The word 'früher' reverses the claim.",
                 it: "»Früher waren es vor allem Studenten, heute sind die meisten berufstätig.« La parola »früher« ribalta l'affermazione.",
                 bn: "»Früher waren es vor allem Studenten, heute sind die meisten berufstätig.« »früher« শব্দটিই বক্তব্যটি উল্টে দেয়।",

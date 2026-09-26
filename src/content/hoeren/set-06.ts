@@ -77,14 +77,14 @@ export const hoer06: HoerSet = {
             bn: "এক বন্ধুর বার্তা",
           },
           transcript:
-            "Hallo, ich bin's, Nina. Du, ich schaffe den Zug um acht nicht mehr, der Bus zum Bahnhof hatte Verspätung. Ich nehme den nächsten, der ist um neun Uhr zwanzig. Musst du mich nicht abholen, ich komme mit der Straßenbahn zu dir.",
+            "Hallo, ich bin's, Nina. Du, ich schaffe den Zug um acht nicht mehr, der Bus zum Bahnhof hatte Verspätung. Ich nehme den nächsten, der ist um neun Uhr zwanzig. Du musst mich nicht abholen, ich komme mit der Straßenbahn zu dir.",
           items: [
             {
               nr: 2,
               statement: "Nina möchte am Bahnhof abgeholt werden.",
               answer: false,
               why: {
-                de: "»Musst du mich nicht abholen, ich komme mit der Straßenbahn zu dir.« Sie sagt das Gegenteil, und sie sagt auch gleich, wie sie stattdessen kommt.",
+                de: "»Du musst mich nicht abholen, ich komme mit der Straßenbahn zu dir.« Sie sagt das Gegenteil, und sie sagt auch gleich, wie sie stattdessen kommt.",
                 en: "'You don't have to pick me up, I'll come to you by tram.' She says the opposite, and immediately says how she will come instead.",
                 it: "»Non devi venirmi a prendere, arrivo in tram.« Dice il contrario.",
                 bn: "»আমাকে আনতে হবে না, আমি ট্রামে তোমার কাছে আসছি।« তিনি উল্টোটাই বলেন, আর কীভাবে আসবেন তাও বলেন।",
@@ -307,7 +307,7 @@ export const hoer06: HoerSet = {
               statement: "Sie empfiehlt, einen Sitzplatz zu reservieren.",
               answer: true,
               why: {
-                de: "»Sitzplatz reservieren, auch wenn es zwei Euro extra kostet.« Sie nennt es selbst »einen sehr praktischen Tipp« und begründet ihn im nächsten Satz.",
+                de: "»Sitzplatz reservieren, auch wenn es zwei Euro extra kostet.« Auf die Frage nach einem Tipp antwortet sie »Einen sehr praktischen« und begründet ihn im nächsten Satz.",
                 en: "'Reserve a seat, even if it costs two euros extra.' She calls it 'a very practical tip' herself and justifies it in the next sentence.",
                 it: "»Prenotare il posto, anche se costa due euro in più.«",
                 bn: "»আসন সংরক্ষণ করুন, দুই ইউরো বেশি লাগলেও।« তিনি নিজেই এটাকে »খুব ব্যবহারিক পরামর্শ« বলেন।",

@@ -200,7 +200,7 @@ export const hoer03: HoerSet = {
             "Moderator: Und wie viele halten durch? " +
             "Ärztin: Ungefähr die Hälfte. Das klingt wenig, ist aber viel mehr als bei Empfehlungen, die man nur mündlich bekommt. " +
             "Moderator: Was sollten Patienten tun, bevor sie zu Ihnen kommen? " +
-            "Ärztin: Sich überlegen, was sie wirklich wissen wollen. Ich habe im Schnitt acht Minuten pro Patient. Wer mit drei Anliegen kommt, sollte mir gleich sagen, welches das wichtigste ist. Sonst reden wir zehn Minuten über etwas Nebensächliches. " +
+            "Ärztin: Sich überlegen, was sie wirklich wissen wollen. Ich habe im Schnitt acht Minuten pro Patient. Wer mit drei Anliegen kommt, sollte mir gleich sagen, welches das wichtigste ist. Sonst reden wir die ganze Zeit über etwas Nebensächliches. " +
             "Moderator: Gibt es etwas, das Sie sich von Ihren Patienten wünschen? " +
             "Ärztin: Dass sie ehrlich sind. Wenn jemand die Tabletten nicht genommen hat, soll er das sagen. Ich schimpfe nicht. Aber wenn ich es nicht weiß, verschreibe ich vielleicht etwas Stärkeres, und das ist dann wirklich gefährlich. " +
             "Moderator: Frau Doktor Falk, vielen Dank für das Gespräch.",
@@ -243,7 +243,7 @@ export const hoer03: HoerSet = {
               statement: "Sie verschreibt grundsätzlich keine Schmerzmittel.",
               answer: false,
               why: {
-                de: "»Tabletten gebe ich am Anfang nur, wenn die Schmerzen sehr stark sind.« »nur, wenn« heißt: manchmal ja. »grundsätzlich keine« wäre nie. Achte auf solche Verabsolutierungen in der Aussage — sie sind oft der Fehler.",
+                de: "»Tabletten gebe ich am Anfang nur, wenn die Schmerzen sehr stark sind.« »nur, wenn« heißt: manchmal ja. Die Aussage behauptet dagegen: grundsätzlich keine, also nie. Achte auf solche Verabsolutierungen in der Aussage — sie sind oft der Fehler.",
                 en: "'I only give tablets at the start if the pain is very severe.' 'nur, wenn' means sometimes yes. 'grundsätzlich keine' would mean never. Watch for such absolutes in the statement — they are often the error.",
                 it: "»Do pastiglie all'inizio solo se il dolore è molto forte.« »Solo se« significa a volte sì.",
                 bn: "»শুরুতে ওষুধ দিই কেবল যদি ব্যথা খুব তীব্র হয়।« »nur, wenn« মানে কখনো কখনো হ্যাঁ। বক্তব্যের এমন চূড়ান্ত কথাই প্রায়ই ভুল।",
@@ -287,7 +287,7 @@ export const hoer03: HoerSet = {
               statement: "Fast alle Teilnehmer machen den Kurs bis zum Ende mit.",
               answer: false,
               why: {
-                de: "»Ungefähr die Hälfte.« Die Hälfte ist nicht fast alle. Sie nennt es dann zwar »viel mehr als bei mündlichen Empfehlungen« — aber das ist ein Vergleich, keine neue Zahl.",
+                de: "»Ungefähr die Hälfte.« Die Hälfte ist nicht fast alle. Sie nennt es dann zwar »viel mehr als bei Empfehlungen, die man nur mündlich bekommt« — aber das ist ein Vergleich, keine neue Zahl.",
                 en: "'About half.' Half is not almost all. She then calls it 'far more than with spoken advice' — but that is a comparison, not a new figure.",
                 it: "»Circa la metà.« La metà non è quasi tutti.",
                 bn: "»প্রায় অর্ধেক।« অর্ধেক মানে প্রায় সবাই নয়।",

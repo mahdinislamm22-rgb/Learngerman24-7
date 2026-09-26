@@ -275,7 +275,7 @@ Und das Wichtigste: Fehler im Anschreiben fallen mehr auf als ein schwaches Nive
       },
       {
         nr: 15,
-        text: "Sie möchten neben Ihrer Stelle einen weiteren Abschluss machen und können nur am Wochenende.",
+        text: "Sie möchten neben Ihrer Stelle einen weiteren Abschluss machen und haben nur am Freitagabend und am Wochenende Zeit.",
         answerKey: "d",
         why: {
           de: "Anzeige d) bietet zusätzliche Abschlüsse neben dem Beruf, freitagabends und samstags. Anzeige b) ist ein Sprachkurs, kein Abschluss.",

@@ -72,7 +72,7 @@ export const les01: LesenSet = {
       },
       {
         nr: 3,
-        text: "Die Volkshochschule bietet ab Oktober Abendkurse für Erwachsene an, die tagsüber arbeiten. Der Unterricht findet zweimal pro Woche von 18 bis 20 Uhr statt. Die Kurse sind besonders für Menschen gedacht, die schon einen Job haben, aber ihre Sprachkenntnisse für den Beruf verbessern möchten.",
+        text: "Die Volkshochschule bietet ab Oktober Abendkurse für Erwachsene an, die tagsüber arbeiten. Der Unterricht findet zweimal pro Woche von 18 bis 20 Uhr statt. Die Kurse sind besonders für Menschen gedacht, die schon einen Job haben, aber ihre Deutschkenntnisse für den Beruf verbessern möchten.",
         answerKey: "g",
         why: {
           de: "Abendkurse für Berufstätige, die ihr Deutsch für die Arbeit verbessern wollen — »neben dem Beruf« fasst genau das zusammen.",
@@ -247,7 +247,7 @@ Nach der Ausbildung übernehmen die meisten Betriebe ihre Auszubildenden. Wer m�
       {
         key: "h",
         title: "Gitarrenunterricht",
-        text: "Gitarre lernen für Anfänger, jeden Alters. Einzelstunden oder online. Erste Stunde kostenlos.",
+        text: "Gitarre lernen für Anfänger jeden Alters. Einzelstunden oder online. Erste Stunde kostenlos.",
       },
       {
         key: "i",

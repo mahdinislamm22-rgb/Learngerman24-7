@@ -5,6 +5,8 @@ import { sb04 } from "./set-04";
 import { sb05 } from "./set-05";
 import { sb06 } from "./set-06";
 import { sb07 } from "./set-07";
+import { sb08 } from "./set-08";
+import { sb09 } from "./set-09";
 import { splitGaps, type SbSet } from "./types";
 
 export type { SbSet, SbTeil1Item, SbTeil2Item, SbBankEntry } from "./types";
@@ -15,7 +17,7 @@ export {
   SB_TOTAL_POINTS,
 } from "./types";
 
-export const SB_SETS: SbSet[] = [sb01, sb02, sb03, sb04, sb05, sb06, sb07];
+export const SB_SETS: SbSet[] = [sb01, sb02, sb03, sb04, sb05, sb06, sb07, sb08, sb09];
 
 export function getSbSet(code: string): SbSet | undefined {
   return SB_SETS.find((s) => s.code === code);

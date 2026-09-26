@@ -55,17 +55,17 @@ export const hoer07: HoerSet = {
             bn: "সুপারমার্কেটের ঘোষণা",
           },
           transcript:
-            "Liebe Kundinnen und Kunden, wegen einer Störung können wir an den Kassen zwei und drei zurzeit keine Karten annehmen. An Kasse eins und vier funktioniert alles wie gewohnt. Wir bitten um Ihr Verständnis.",
+            "Liebe Kundinnen und Kunden, wegen einer Störung können Sie an den Kassen zwei und drei zurzeit nur bar bezahlen. An Kasse eins und vier funktioniert die Kartenzahlung wie gewohnt. Wir bitten um Ihr Verständnis.",
           items: [
             {
               nr: 1,
               statement: "Im ganzen Supermarkt kann man nur bar bezahlen.",
               answer: false,
               why: {
-                de: "»An Kasse eins und vier funktioniert alles wie gewohnt.« Betroffen sind nur zwei von vier Kassen. Eine Störung an einer Stelle ist keine Störung überall — »im ganzen« ist deshalb zu weit gefasst.",
-                en: "'At tills one and four everything works as usual.' Only two of four tills are affected. A fault in one place is not a fault everywhere — 'in the whole shop' is too broad.",
-                it: "»Alle casse uno e quattro funziona tutto normalmente.« Solo due casse su quattro sono coinvolte.",
-                bn: "»এক ও চার নম্বর কাউন্টারে সব স্বাভাবিক।« চারটির মধ্যে দুটি কাউন্টারই কেবল প্রভাবিত।",
+                de: "»An Kasse eins und vier funktioniert die Kartenzahlung wie gewohnt.« Betroffen sind nur zwei von vier Kassen. Eine Störung an einer Stelle ist keine Störung überall — »im ganzen« ist deshalb zu weit gefasst.",
+                en: "'At tills one and four card payment works as usual.' Only two of four tills are affected. A fault in one place is not a fault everywhere — 'in the whole shop' is too broad.",
+                it: "»Alle casse uno e quattro il pagamento con carta funziona normalmente.« Solo due casse su quattro sono coinvolte.",
+                bn: "»এক ও চার নম্বর কাউন্টারে কার্ড পেমেন্ট স্বাভাবিকভাবেই চলে।« চারটির মধ্যে দুটি কাউন্টারই কেবল প্রভাবিত।",
               },
             },
           ],
@@ -86,7 +86,7 @@ export const hoer07: HoerSet = {
               statement: "Herr Islam bekommt sein Geld zurück.",
               answer: false,
               why: {
-                de: "»Wir bieten Ihnen gern einen Gutschein an — Geld können wir in diesem Fall nicht auszahlen.« Der Satz klingt freundlich und ist trotzdem eine Absage. Ein Gutschein ist kein Geld: Man kann ihn nur in demselben Laden ausgeben.",
+                de: "»Wir bieten Ihnen gern einen Gutschein über den Kaufpreis an — Geld können wir in diesem Fall nicht auszahlen.« Der Satz klingt freundlich und ist trotzdem eine Absage. Ein Gutschein ist kein Geld: Man kann ihn nur in demselben Laden ausgeben.",
                 en: "'We are glad to offer you a voucher — we cannot pay out cash in this case.' The sentence sounds friendly and is still a refusal. A voucher is not money: you can only spend it in that same shop.",
                 it: "»Le offriamo volentieri un buono — in questo caso non possiamo rimborsare in denaro.« Suona gentile ma è un rifiuto.",
                 bn: "»আমরা সানন্দে একটি ভাউচার দিচ্ছি — এ ক্ষেত্রে নগদ দিতে পারি না।« বাক্যটি বন্ধুত্বপূর্ণ শোনায়, তবু এটি প্রত্যাখ্যান।",
@@ -107,11 +107,11 @@ export const hoer07: HoerSet = {
           items: [
             {
               nr: 3,
-              statement: "Das Paket kann bis Sonntag bei Ernst abgeholt werden.",
+              statement: "Ernst ist bis Sonntag durchgehend zu Hause.",
               answer: false,
               why: {
-                de: "»Ich bin bis acht Uhr abends zu Hause, danach fahre ich weg und komme erst Sonntag zurück.« Bis acht Uhr geht es, dann erst wieder ab Sonntag — dazwischen ist niemand da. Die Aussage macht aus zwei Zeitpunkten einen durchgehenden Zeitraum.",
-                en: "'I'm home until eight in the evening, after that I go away and am not back until Sunday.' Until eight yes, then again from Sunday — in between nobody is there. The statement turns two points in time into one continuous window.",
+                de: "»Ich bin bis acht Uhr abends zu Hause, danach fahre ich weg und komme erst Sonntag zurück.« Bis acht Uhr ist er da, dann erst wieder ab Sonntag — dazwischen niemand. »durchgehend« ist genau das, was die Nachricht ausschließt.",
+                en: "'I'm home until eight in the evening, after that I go away and am not back until Sunday.' He is there until eight, then again from Sunday — nobody in between. 'durchgehend' is exactly what the message rules out.",
                 it: "»Sono a casa fino alle otto, poi parto e torno solo domenica.« Nel mezzo non c'è nessuno.",
                 bn: "»রাত আটটা পর্যন্ত বাসায় আছি, তারপর চলে যাব, ফিরব রবিবার।« মাঝখানে কেউ নেই। বক্তব্যটি দুটি সময়বিন্দুকে একটানা সময় বানিয়ে ফেলেছে।",
               },
@@ -245,7 +245,7 @@ export const hoer07: HoerSet = {
               statement: "Frau Novak muss beweisen, dass sie das Gerät nicht beschädigt hat.",
               answer: false,
               why: {
-                de: "»Im ersten Jahr nicht. Da muss der Verkäufer beweisen … Nach zwölf Monaten dreht sich das um … Aber Sie sind ja erst bei vier.« Die Regel für später wird genannt und dann für diesen Fall ausgeschlossen. Wer nur »Sie sind in der Pflicht« hört, antwortet falsch.",
+                de: "»Im ersten Jahr nicht. Da muss der Verkäufer beweisen … Nach zwölf Monaten dreht sich das um … Aber Sie sind ja erst bei vier.« Die Regel für später wird genannt und dann für diesen Fall ausgeschlossen. Wer nur »dann sind Sie in der Pflicht« hört, antwortet falsch.",
                 en: "'Not in the first year. There the seller must prove … After twelve months it reverses … But you are only at four.' The later rule is named and then ruled out for this case. Anyone who only hears 'you are the one who must prove it' answers wrongly.",
                 it: "»Nel primo anno no … dopo dodici mesi si inverte … ma lei è solo a quattro.« La regola successiva viene nominata e poi esclusa.",
                 bn: "»প্রথম বছরে নয়। তখন বিক্রেতাকে প্রমাণ করতে হয় … বারো মাস পরে উল্টে যায় … কিন্তু আপনার তো মাত্র চার।« পরের নিয়মটি বলা হয়ে এই ক্ষেত্রে বাদ দেওয়া হয়।",
@@ -311,8 +311,8 @@ export const hoer07: HoerSet = {
               statement: "Den Nachweis über ihr Einkommen kann sie später bringen.",
               answer: true,
               why: {
-                de: "»Kein Problem, Sie können ihn nachreichen.« Nachreichen heißt: später bringen. Dasselbe Wort kam im Modelltest über die Ämter vor — es lohnt sich, es zu behalten.",
-                en: "'No problem, you can hand it in later.' Nachreichen means to submit later. The same word appeared in the mock exam about public offices — worth keeping.",
+                de: "»Kein Problem, Sie können ihn nachreichen.« Nachreichen heißt: später bringen. Dasselbe Wort kommt im Lesetext über die Arztpraxis vor — es lohnt sich, es zu behalten.",
+                en: "'No problem, you can hand it in later.' Nachreichen means to submit later. The same word appears in the reading text about the doctor's surgery — worth keeping.",
                 it: "»Nessun problema, può consegnarlo dopo.« Nachreichen significa presentare in seguito.",
                 bn: "»সমস্যা নেই, পরে দিতে পারবেন।« nachreichen মানে পরে জমা দেওয়া। দপ্তর নিয়ে মডেল টেস্টেও শব্দটি ছিল।",
               },

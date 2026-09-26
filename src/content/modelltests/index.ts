@@ -5,6 +5,8 @@ import { les04 } from "@/content/lesen/set-04";
 import { les05 } from "@/content/lesen/set-05";
 import { les06 } from "@/content/lesen/set-06";
 import { les07 } from "@/content/lesen/set-07";
+import { les08 } from "@/content/lesen/set-08";
+import { les09 } from "@/content/lesen/set-09";
 import { sb01 } from "@/content/sprachbausteine/set-01";
 import { sb02 } from "@/content/sprachbausteine/set-02";
 import { sb03 } from "@/content/sprachbausteine/set-03";
@@ -12,6 +14,8 @@ import { sb04 } from "@/content/sprachbausteine/set-04";
 import { sb05 } from "@/content/sprachbausteine/set-05";
 import { sb06 } from "@/content/sprachbausteine/set-06";
 import { sb07 } from "@/content/sprachbausteine/set-07";
+import { sb08 } from "@/content/sprachbausteine/set-08";
+import { sb09 } from "@/content/sprachbausteine/set-09";
 import { hoer01 } from "@/content/hoeren/set-01";
 import { hoer02 } from "@/content/hoeren/set-02";
 import { hoer03 } from "@/content/hoeren/set-03";
@@ -19,6 +23,8 @@ import { hoer04 } from "@/content/hoeren/set-04";
 import { hoer05 } from "@/content/hoeren/set-05";
 import { hoer06 } from "@/content/hoeren/set-06";
 import { hoer07 } from "@/content/hoeren/set-07";
+import { hoer08 } from "@/content/hoeren/set-08";
+import { hoer09 } from "@/content/hoeren/set-09";
 import { getSchreibenTask } from "@/content/schreiben";
 import { validateLesenSet } from "@/content/lesen";
 import { validateSet as validateSbSet } from "@/content/sprachbausteine";
@@ -155,7 +161,41 @@ const mt07: Modelltest = {
   schreiben: getSchreibenTask("SCH-14")!,
 };
 
-export const MODELLTESTS: Modelltest[] = [mt01, mt02, mt03, mt04, mt05, mt06, mt07];
+const mt08: Modelltest = {
+  code: "MT-08",
+  nr: 8,
+  title: {
+    de: "Modelltest 8",
+    en: "Mock exam 8",
+    it: "Prova modello 8",
+    bn: "মডেল টেস্ট ৮",
+  },
+  focus: MT_PLAN[7].theme,
+  lesen: les08,
+  sprachbausteine: sb08,
+  hoeren: hoer08,
+  // SCH-15 asks a neighbour for quiet: semi-formal, four Leitpunkte.
+  schreiben: getSchreibenTask("SCH-15")!,
+};
+
+const mt09: Modelltest = {
+  code: "MT-09",
+  nr: 9,
+  title: {
+    de: "Modelltest 9",
+    en: "Mock exam 9",
+    it: "Prova modello 9",
+    bn: "মডেল টেস্ট ৯",
+  },
+  focus: MT_PLAN[8].theme,
+  lesen: les09,
+  sprachbausteine: sb09,
+  hoeren: hoer09,
+  // SCH-16 asks the nursery for earlier care: formal, four Leitpunkte.
+  schreiben: getSchreibenTask("SCH-16")!,
+};
+
+export const MODELLTESTS: Modelltest[] = [mt01, mt02, mt03, mt04, mt05, mt06, mt07, mt08, mt09];
 
 export function getModelltest(code: string): Modelltest | undefined {
   return MODELLTESTS.find((m) => m.code === code);

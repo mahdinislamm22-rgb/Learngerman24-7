@@ -19,8 +19,8 @@ function g(
  *
  * Travel texts are dense with times, prices and conditions, so the traps
  * here are mostly about holding two facts apart:
- *   · Teil 1 text 2 and heading j) both concern cancelled trains, but the
- *     text is about what you get BACK, not about the cancellations.
+ *   · Teil 1 text 2 and heading g) both concern trains going wrong, but the
+ *     text is about what you get BACK, not about why they are cancelled.
  *   · Teil 2 question 8 turns on "ab" versus "bis" in a price — "ab
  *     neunzehn Euro" is the cheapest fare, not the only one.
  *   · Teil 3 situation 16 answers x: the traveller needs a bike on a long
@@ -60,7 +60,7 @@ export const les06: LesenSet = {
       { key: "e", text: "Wenn der Koffer nicht ankommt" },
       { key: "f", text: "Parken wird teurer" },
       { key: "g", text: "Warum so viele Züge ausfallen" },
-      { key: "h", text: "Ohne Auto aufs Land" },
+      { key: "h", text: "Ohne Auto auf dem Land" },
       { key: "i", text: "Nachtzüge kommen zurück" },
       { key: "j", text: "Reisen mit Kindern" },
     ],

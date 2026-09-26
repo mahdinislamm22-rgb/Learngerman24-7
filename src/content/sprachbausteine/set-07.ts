@@ -46,7 +46,7 @@ Seit letzter Woche schaltet es sich nicht mehr aus. Ich habe deshalb {2} Kundend
 
 Das Gerät ist erst drei Wochen alt und hat {4} Fehler, den ich nicht selbst verursacht habe. Nach dem Gesetz {5} der Verkäufer zwei Jahre lang für die Ware.
 
-Ich bitte Sie deshalb, das Gerät {6} oder mir ein neues zu schicken. Eine Rechnung {7} der Bestellung wurde mir per E-Mail geschickt; sie liegt als Anhang bei.
+Ich bitte Sie deshalb, das Gerät {6} oder mir ein neues zu schicken. Eine Rechnung {7} den Kaufpreis wurde mir per E-Mail geschickt; sie liegt als Anhang bei.
 
 Sollte eine Reparatur nicht möglich sein, {8} ich mein Geld zurückbekommen. Bitte teilen Sie mir mit, {9} ich das Gerät zurückschicken soll und wer die Kosten dafür {10}.
 
@@ -128,14 +128,14 @@ Mahdin Islam`,
       },
       {
         nr: 7,
-        options: ["über", "von", "für"],
+        options: ["über", "auf", "an"],
         answerIndex: 0,
         tag: "praeposition-nomen",
         why: {
-          de: "»eine Rechnung über die Bestellung« — bei Beträgen und Vorgängen heißt es »eine Rechnung über«, so wie »ein Scheck über hundert Euro«. »von der Bestellung« wäre Alltagssprache, aber in einem förmlichen Brief nimmt man »über«.",
-          en: "'eine Rechnung über die Bestellung' — with amounts and transactions it is 'eine Rechnung über', like 'ein Scheck über hundert Euro'. 'von der Bestellung' is colloquial; a formal letter takes 'über'.",
-          it: "Con importi e operazioni si dice »eine Rechnung über«, come »ein Scheck über hundert Euro«.",
-          bn: "অঙ্ক ও লেনদেনের ক্ষেত্রে »eine Rechnung über« বসে, যেমন »ein Scheck über hundert Euro«। »von« কথ্য, আনুষ্ঠানিক চিঠিতে »über«।",
+          de: "»eine Rechnung über den Kaufpreis« — bei Beträgen heißt es immer »über«, genau wie bei »ein Scheck über hundert Euro«. Achte auch auf den Kasus: über verlangt hier den Akkusativ, deshalb »den Kaufpreis« und nicht »dem Kaufpreis«.",
+          en: "'eine Rechnung über den Kaufpreis' — with amounts it is always 'über', exactly as in 'ein Scheck über hundert Euro'. Note the case too: über here takes the accusative, hence 'den Kaufpreis'.",
+          it: "Con gli importi si usa sempre »über«, come in »ein Scheck über hundert Euro«; e regge l'accusativo.",
+          bn: "অঙ্কের ক্ষেত্রে সবসময় »über« বসে, যেমন »ein Scheck über hundert Euro«। কারকও দেখুন: এখানে über Akkusativ চায়, তাই »den Kaufpreis«।",
         },
       },
       {
